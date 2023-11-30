@@ -8,10 +8,10 @@ import maingame.model.vo.Stadium;
 
 public class MarbleGame extends JFrame
 {
-	public static JLayeredPane jlp; // ¿©·¯ ÃşÀ» ½×À» ¼ö ÀÖ´Â ÄÁÅ×ÀÌ³Ê
+	public static JLayeredPane jlp; // ì—¬ëŸ¬ ì¸µì„ ìŒ“ì„ ìˆ˜ ìˆëŠ” ì»¨í…Œì´ë„ˆ
 	public static Player[] p = new Player[3];
 	public static Stadium[] st = new Stadium[12];
-	public static int[][] pst = new int[3][3]; // ÇÃ·¹ÀÌ¾î ¼ÒÀ¯ ±¸Àå ±â·Ï
+	public static int[][] pst = new int[3][3]; // í”Œë ˆì´ì–´ ì†Œìœ  êµ¬ì¥ ê¸°ë¡
 
 	private MarbleManager mm = new MarbleManager();
 
@@ -19,36 +19,38 @@ public class MarbleGame extends JFrame
 	{
 		jlp = new JLayeredPane();
 
-		// ÀüÃ¼ Æ² ÇÁ·¹ÀÓ ¼³Á¤
-		setTitle("´Ï¶¥³»¶¥"); // Á¦¸ñ
-		setSize(1500, 1000); // »çÀÌÁî
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // xÇ¥½Ã ´©¸£¸é ½Ã½ºÅÛ Á¾·á
-		setResizable(false); // »çÀÌÁî Á¶Á¤ ºÒ°¡
-		setLocationRelativeTo(null); // ¸ğ´ÏÅÍ Áß¾Ó¿¡ À§Ä¡
+		// ì „ì²´ í‹€ í”„ë ˆì„ ì„¤ì •
+		setTitle("í•™ì ë§ˆë¸”"); // ì œëª©
+		setSize(1500, 1000); // ì‚¬ì´ì¦ˆ
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // xí‘œì‹œ ëˆ„ë¥´ë©´ ì‹œìŠ¤í…œ ì¢…ë£Œ
+		setResizable(false); // ì‚¬ì´ì¦ˆ ì¡°ì • ë¶ˆê°€
+		setLocationRelativeTo(null); // ëª¨ë‹ˆí„° ì¤‘ì•™ì— ìœ„ì¹˜
 
-		// ÇÃ·¹ÀÌ¾î, ±¸Àå °´Ã¼ »ı¼º
+		// í”Œë ˆì´ì–´, êµ¬ì¥ ê°ì²´ ìƒì„±
 		for(int i=0;i<3;i++)
 		{
-			p[i] = new Player(null, 5000000, i+1, 0, 0, 0, 1, 1, 0);
+			p[i] = new Player(null, 1000, i+1, 0, 0, 0, 1, 1, 0);
 		}
 
-		st[0] = new Stadium("Ãâ¹ß", 3, 0, 0, 0, 0, 0, 1);
-		st[1] = new Stadium("¸ÇÃ¼½ºÅÍ United", 3, 1500000, 1500000, 0, 600000, 300000, 0);
-		st[2] = new Stadium("Ã¿½Ã", 3, 1500000, 1500000, 0, 600000, 300000, 0);
-		st[3] = new Stadium("Ãà±¸°ÔÀÓ", 3, 0, 0, 0, 0, 0, 1);
-		st[4] = new Stadium("¹ÙÀÌ¿¡¸¥¹ÀÇî", 3, 2000000, 2000000, 0, 800000, 400000, 0);
-		st[5] = new Stadium("µµ¸£Æ®¹®Æ®", 3, 1500000, 1500000, 0, 600000, 300000, 0);
-		st[6] = new Stadium("ºí·¢È¦", 3, 0, 0, 0, 0, 0, 1);
-		st[7] = new Stadium("FC¼­¿ï", 3, 2500000, 2500000, 0, 1000000, 500000, 0);
-		st[8] = new Stadium("ÀüºÏÇö´ë", 3, 2000000, 2000000, 0, 800000, 400000, 0);
-		st[9] = new Stadium("Ãà±¸°ÔÀÓ", 3, 0, 0, 0, 0, 0, 1);
-		st[10] = new Stadium("FC¹Ù¸£¼¿·Î³ª", 3, 2000000, 2000000, 0, 800000, 400000, 0);
-		st[11] = new Stadium("·¹¾Ë¸¶µå¸®µå", 3, 2000000, 2000000, 0, 800000, 400000, 0);
+		//String name, int owner, int price, int takePrice, int takeCount,  int toll,  int admission, int ownerCheck -> ì´ë¦„, owner, ì¸ìˆ˜ë¹„, 
+			//   ì´ë¦„    		êµ¬ë§¤		  ì¸ìˆ˜ë¹„ 										í†µí–‰ë£Œ
+		st[0] = new Stadium("ì¶œë°œ", 3, 0, 0, 0, 0, 0, 1);
+		st[1] = new Stadium("java í”„ë¡œê·¸ë˜ë°", 3, 200, 200, 0, 100, 200, 0); 
+		st[2] = new Stadium("ì•Œê³ ë¦¬ì¦˜", 3, 200, 200, 0, 100, 200, 0);
+		st[3] = new Stadium("ì¶•êµ¬ê²Œì„", 3, 0, 0, 0, 0, 0, 1);
+		st[4] = new Stadium("ìš´ì˜ì²´ì œ", 3, 250, 250, 0, 125, 200, 0);
+		st[5] = new Stadium("ë°ì´í„°ë² ì´ìŠ¤", 3, 250, 250, 0, 125, 200, 0);
+		st[6] = new Stadium("ë¸”ë™í™€", 3, 0, 0, 0, 0, 0, 1);
+		st[7] = new Stadium("ìµœì í™”ë¡ ", 3, 300, 300, 0, 150, 200, 0);
+		st[8] = new Stadium("ìë£Œêµ¬ì¡°", 3, 300, 300, 0, 150, 200, 0);
+		st[9] = new Stadium("ì¶•êµ¬ê²Œì„", 3, 0, 0, 0, 0, 0, 1);
+		st[10] = new Stadium("ì»´í“¨í„°êµ¬ì¡°ë¡ ", 3, 350, 350, 0, 175, 200, 0);
+		st[11] = new Stadium("ì…˜í˜•ëŒ€ìˆ˜í•™", 3, 350, 350, 0, 175, 200, 0);
 
-		mm.startpage(); // ½ÃÀÛ È­¸é ½ÇÇà
+		mm.startpage(); // ì‹œì‘ í™”ë©´ ì‹¤í–‰
 
-		add(jlp); // ÄÁÅ×ÀÌ³Ê¸¦ ÇÁ·¹ÀÓ¿¡ ¿Ã¸®±â
+		add(jlp); // ì»¨í…Œì´ë„ˆë¥¼ í”„ë ˆì„ì— ì˜¬ë¦¬ê¸°
 
-		setVisible(true); // ÇÁ·¹ÀÓÀ» º¸¿©ÁÖ±â
+		setVisible(true); // í”„ë ˆì„ì„ ë³´ì—¬ì£¼ê¸°
 	}
 }

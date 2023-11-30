@@ -10,8 +10,8 @@ public class CheckEvent implements ActionListener
 {
 	public void actionPerformed(ActionEvent e)
 	{
-		CheckButton.cb.setVisible(false); // Ã¼Å© ¹öÆ° 1¹ø ´©¸¥ µÚ, »ç¶óÁö±â
+		CheckButton.cb.setVisible(false); // ì²´í¬ ë²„íŠ¼ 1ë²ˆ ëˆ„ë¥¸ ë’¤, ì‚¬ë¼ì§€ê¸°
 		
-		CheckPopup cp = new CheckPopup(); // ¼ø¼­ °á°ú ÆË¾÷
+		CheckPopup cp = new CheckPopup(); // ìˆœì„œ ê²°ê³¼ íŒì—…
 	}
 }

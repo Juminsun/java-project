@@ -20,19 +20,19 @@ public class PBorder extends JLabel
 	{
 		for (int i=0;i<12;i++)
 		{
-			pborder[i] = new JLabel(); // »ý¼º
+			pborder[i] = new JLabel(); // ìƒì„±
 		}
-		pborder[1].setBounds(605, 595, 145, 145); // À§Ä¡ ¹× »çÀÌÁî
+		pborder[1].setBounds(605, 595, 145, 145); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pborder[2].setBounds(750, 595, 145, 145);
 		pborder[4].setBounds(895, 480, 145, 145);
 		pborder[5].setBounds(895, 370, 145, 145);
-		pborder[7].setBounds(750, 260, 145, 145);
-		pborder[8].setBounds(605, 260, 145, 145);
+		pborder[7].setBounds(750, 240, 145, 145);
+		pborder[8].setBounds(605, 240, 145, 145);
 		pborder[10].setBounds(460, 370, 145, 145);
 		pborder[11].setBounds(460, 480, 145, 145);
 		for (int i=0;i<12;i++)
 		{
-			MarbleGame.jlp.add(pborder[i], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(pborder[i], new Integer(5)); // 5ì¸µì— ì¶”ê°€
 		}
 	}	
 }

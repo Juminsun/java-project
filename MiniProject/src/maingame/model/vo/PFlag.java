@@ -19,14 +19,14 @@ public class PFlag extends JLabel
 		{
 			for(int j=0;j<12;j++)
 			{
-				pflag[i][j] = new JLabel(); // »ý¼º
+				pflag[i][j] = new JLabel(); // ìƒì„±
 			}
 		}
-		pflag[0][0].setIcon(y); // ÀÌ¹ÌÁö
+		pflag[0][0].setIcon(y); // ì´ë¯¸ì§€
 		pflag[1][0].setIcon(b);
 		pflag[2][0].setIcon(g);
 		
-		pflag[0][0].setBounds(485, 665, 20, 30); // À§Ä¡ ¹× »çÀÌÁî
+		pflag[0][0].setBounds(485, 665, 20, 30); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pflag[0][1].setBounds(630, 665, 20, 30);
 		pflag[0][2].setBounds(775, 665, 20, 30);
 		pflag[0][3].setBounds(920, 665, 20, 30);
@@ -69,7 +69,7 @@ public class PFlag extends JLabel
 		{
 			for(int j=0;j<12;j++)
 			{
-				MarbleGame.jlp.add(pflag[i][j], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
+				MarbleGame.jlp.add(pflag[i][j], new Integer(5)); // 5ì¸µì— ì¶”ê°€
 			}
 		}
 	}

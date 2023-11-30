@@ -11,8 +11,8 @@ public class FinalBackground extends JLabel
 
 	public FinalBackground()
 	{
-		setIcon(gbg); // ÀÌ¹ÌÁö
-		setBounds(0, 0, 1500, 1000); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(this, new Integer(7)); // 7Ãş¿¡ Ãß°¡
+		setIcon(gbg); // ì´ë¯¸ì§€
+		setBounds(0, 0, 1500, 1000); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(this, new Integer(7)); // 7ì¸µì— ì¶”ê°€
 	}
 }

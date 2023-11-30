@@ -14,17 +14,17 @@ public class NameField extends JTextField
 	{
 		for(int i=0;i<3;i++)
 		{
-			nf[i] = new JTextField(12); // ±æÀÌ 12
-			nf[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.BOLD, 20)); // ±Û²Ã, ±½°Ô, Å©±â
-			nf[i].setBorder(null); // Å×µÎ¸® Á¦°Å
-			nf[i].setToolTipText("ÃÖ´ë 5±ÛÀÚ"); // Æ÷Ä¿½º µÉ ¶§, ÅøÆÁ ¼³Á¤
+			nf[i] = new JTextField(12); // ê¸¸ì´ 12
+			nf[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.BOLD, 20)); // ê¸€ê¼´, êµµê²Œ, í¬ê¸°
+			nf[i].setBorder(null); // í…Œë‘ë¦¬ ì œê±°
+			nf[i].setToolTipText("ìµœëŒ€ 5ê¸€ìž"); // í¬ì»¤ìŠ¤ ë  ë•Œ, íˆ´íŒ ì„¤ì •
 		}
-		nf[0].setBounds(320, 620, 160, 35); // À§Ä¡ ¹× »çÀÌÁî
+		nf[0].setBounds(320, 620, 160, 35); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		nf[1].setBounds(670, 620, 160, 35);
 		nf[2].setBounds(1020, 620, 160, 35);
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(nf[i], new Integer(1)); // 1Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(nf[i], new Integer(1)); // 1ì¸µì— ì¶”ê°€
 		}
 	}
 }

@@ -14,16 +14,16 @@ public class PName extends JLabel
 		
 		for(int i=0;i<3;i++)
 		{
-			pname[i] = new JLabel(MarbleGame.p[i].getName()); // ÇÃ·¹ÀÌ¾î ÀÌ¸§
-			pname[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
-			pname[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 20)); // ±Û²Ã, ÀÏ¹Ý, Å©±â
+			pname[i] = new JLabel(MarbleGame.p[i].getName()); // í”Œë ˆì´ì–´ ì´ë¦„
+			pname[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
+			pname[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 20)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
 		}
-		pname[0].setBounds(195, 370, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+		pname[0].setBounds(195, 370, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pname[1].setBounds(500, 110, 100, 50);
 		pname[2].setBounds(1200, 370, 100, 50);
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(pname[i], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(pname[i], new Integer(5)); // 5ì¸µì— ì¶”ê°€
 		}
 	}
 }

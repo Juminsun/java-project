@@ -15,12 +15,12 @@ public class CheckButton extends JButton
 
 	public CheckButton()
 	{
-		cb = new JButton(c); // ÀÌ¹ÌÁö
-		cb.addActionListener(ce); // ¾×¼Ç Ãß°¡
-		cb.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		cb = new JButton(c); // ì´ë¯¸ì§€
+		cb.addActionListener(ce); // ì•¡ì…˜ ì¶”ê°€
+		cb.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		cb.setContentAreaFilled(false);
 		cb.setFocusPainted(false);
-		cb.setBounds(600, 750, 300, 130); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(cb, new Integer(3)); // 3Ãş¿¡ Ãß°¡
+		cb.setBounds(600, 750, 300, 130); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(cb, new Integer(3)); // 3ì¸µì— ì¶”ê°€
 	}
 }

@@ -11,8 +11,8 @@ public class MainBackground extends JLabel
 
 	public MainBackground()
 	{
-		setIcon(mbg); // ÀÌ¹ÌÁö
-		setBounds(0, 0, 1500, 1000); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(this, new Integer(4)); // 4Ãş¿¡ Ãß°¡
+		setIcon(mbg); // ì´ë¯¸ì§€
+		setBounds(0, 0, 1500, 1000); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(this, new Integer(4)); // 4ì¸µì— ì¶”ê°€
 	}
 }

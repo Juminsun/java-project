@@ -9,8 +9,8 @@ public class SpinEvent implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		mm.spindice(); // ÁÖ»çÀ§ µ¹¸®±â ¸Ş¼Òµå
-		mm.pdiceimage(); // °ª¿¡ µû¸¥ ÁÖ»çÀ§ ÀÌ¹ÌÁö
-		mm.game(); // °ÔÀÓ ½ÃÀÛ
+		mm.spindice(); // ì£¼ì‚¬ìœ„ ëŒë¦¬ê¸° ë©”ì†Œë“œ
+		mm.pdiceimage(); // ê°’ì— ë”°ë¥¸ ì£¼ì‚¬ìœ„ ì´ë¯¸ì§€
+		mm.game(); // ê²Œì„ ì‹œì‘
 	}
 }

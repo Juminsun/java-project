@@ -21,38 +21,38 @@ public class CheckPopup extends JDialog
 
 	public CheckPopup()
 	{
-		// ÆË¾÷ Æ² ¼³Á¤
-		setTitle("¼ø¼­ °á°ú"); // Á¦¸ñ(¾ÕÀ¸·Î ÆË¾÷ ¼³Á¤ 5Á¾)
-		setSize(300, 300); // ÆË¾÷ »çÀÌÁî
-		setResizable(false); // »çÀÌÁî Á¶Á¤ ºÒ°¡
-		setLocationRelativeTo(null); // ¸ğ´ÏÅÍ Áß¾Ó¿¡ À§Ä¡
-		setLayout(null); // Àı´ë°ª ÁöÁ¤ ·¹ÀÌ¾Æ¿ô
+		// íŒì—… í‹€ ì„¤ì •
+		setTitle("ìˆœì„œ ê²°ê³¼"); // ì œëª©(ì•ìœ¼ë¡œ íŒì—… ì„¤ì • 5ì¢…)
+		setSize(300, 300); // íŒì—… ì‚¬ì´ì¦ˆ
+		setResizable(false); // ì‚¬ì´ì¦ˆ ì¡°ì • ë¶ˆê°€
+		setLocationRelativeTo(null); // ëª¨ë‹ˆí„° ì¤‘ì•™ì— ìœ„ì¹˜
+		setLayout(null); // ì ˆëŒ€ê°’ ì§€ì • ë ˆì´ì•„ì›ƒ
 
 		JLabel[] num = new JLabel[3];
 		JLabel[] rank = new JLabel[3];
 		for(int i=0;i<3;i++)
 		{
-			num[i] = new JLabel(); // »ı¼º
-			num[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
-			num[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.BOLD, 30)); // ±Û²Ã, ±½°Ô, Å©±â
+			num[i] = new JLabel(); // ìƒì„±
+			num[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
+			num[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.BOLD, 30)); // ê¸€ê¼´, êµµê²Œ, í¬ê¸°
 
-			rank[i] = new JLabel(NameLabel.nl[MarbleManager.ranking[i]].getText()); // ¼ø¼­¿¡ ¸Â´Â ÀÌ¸§ ³Ö±â
-			rank[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
-			rank[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 20)); // ±Û²Ã, ÀÏ¹İ, Å©±â
+			rank[i] = new JLabel(NameLabel.nl[MarbleManager.ranking[i]].getText()); // ìˆœì„œì— ë§ëŠ” ì´ë¦„ ë„£ê¸°
+			rank[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
+			rank[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 20)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
 			
-			MarbleGame.p[i].setName(NameLabel.nl[MarbleManager.ranking[i]].getText()); // ÇÃ·¹ÀÌ¾î °´Ã¼¿¡ ÀÌ¸§ ³Ö±â
+			MarbleGame.p[i].setName(NameLabel.nl[MarbleManager.ranking[i]].getText()); // í”Œë ˆì´ì–´ ê°ì²´ì— ì´ë¦„ ë„£ê¸°
 		}
-		num[0].setText("1µî : ");
-		num[1].setText("2µî : ");
-		num[2].setText("3µî : ");
+		num[0].setText("1ë“± : ");
+		num[1].setText("2ë“± : ");
+		num[2].setText("3ë“± : ");
 
-		JButton start = new JButton(s); // ÀÌ¹ÌÁö
-		start.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		JButton start = new JButton(s); // ì´ë¯¸ì§€
+		start.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		start.setContentAreaFilled(false);
 		start.setFocusPainted(false);
-		start.setRolloverIcon(s1); // ¹öÆ° À§·Î ¸¶¿ì½º°¡ ¿Ã¶ó¿À¸é, Å×µÎ¸®°¡ »ı±ä ´Ù¸¥ ÀÌ¹ÌÁö·Î º¯°æ
+		start.setRolloverIcon(s1); // ë²„íŠ¼ ìœ„ë¡œ ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ì˜¤ë©´, í…Œë‘ë¦¬ê°€ ìƒê¸´ ë‹¤ë¥¸ ì´ë¯¸ì§€ë¡œ ë³€ê²½
 
-		num[0].setBounds(30, 30, 100, 30); // À§Ä¡ ¹× »çÀÌÁî
+		num[0].setBounds(30, 30, 100, 30); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		num[1].setBounds(30, 100, 100, 30);
 		num[2].setBounds(30, 170, 100, 30);
 		rank[0].setBounds(150, 30, 100, 30);
@@ -60,7 +60,7 @@ public class CheckPopup extends JDialog
 		rank[2].setBounds(150, 170, 100, 30);
 		start.setBounds(60, 210, 180, 50);
 
-		// ÆË¾÷¿¡ ÄÄÆ÷³ÍÆ®µé ¿Ã¸®±â
+		// íŒì—…ì— ì»´í¬ë„ŒíŠ¸ë“¤ ì˜¬ë¦¬ê¸°
 		for(int i=0;i<rank.length;i++)
 		{
 			add(num[i]);
@@ -68,15 +68,15 @@ public class CheckPopup extends JDialog
 		}
 		add(start);
 
-		// ½ÃÀÛ ¹öÆ° ¾×¼Ç(¹«±â¸í)
+		// ì‹œì‘ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+				dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 
-				mm.mainpage(); // ¸ŞÀÎ È­¸é ½ÇÇà
+				mm.mainpage(); // ë©”ì¸ í™”ë©´ ì‹¤í–‰
 			}
 		});
 
-		setVisible(true); // ÆË¾÷À» º¸¿©ÁÖ±â
+		setVisible(true); // íŒì—…ì„ ë³´ì—¬ì£¼ê¸°
 	}
 }

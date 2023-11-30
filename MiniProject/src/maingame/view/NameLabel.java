@@ -14,16 +14,16 @@ public class NameLabel extends JLabel
 	{
 		for(int i=0;i<3;i++)
 		{
-			nl[i] = new JLabel(NameField.nf[i].getText()); // ÅØ½ºÆ®ÇÊµå¿¡ ÀÔ·ÂµÈ °ªÀ» °¡Á®¿Í¼­ ³Ö±â
-			nl[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 30)); // ±Û²Ã, ÀÏ¹Ý, Å©±â
-			nl[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
+			nl[i] = new JLabel(NameField.nf[i].getText()); // í…ìŠ¤íŠ¸í•„ë“œì— ìž…ë ¥ëœ ê°’ì„ ê°€ì ¸ì™€ì„œ ë„£ê¸°
+			nl[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 30)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
+			nl[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
 		}
-		nl[0].setBounds(320, 305, 160, 70); // À§Ä¡ ¹× »çÀÌÁî
+		nl[0].setBounds(320, 305, 160, 70); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		nl[1].setBounds(670, 305, 160, 70);
 		nl[2].setBounds(1020, 305, 160, 70);
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(nl[i], new Integer(3)); // 3Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(nl[i], new Integer(3)); // 3ì¸µì— ì¶”ê°€
 		}
 	}
 }

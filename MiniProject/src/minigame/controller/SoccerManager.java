@@ -66,14 +66,14 @@ public class SoccerManager
 	{
 		if(gknum != posinum)
 		{
-			MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+500000);
+			MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+300);
 			mm.moneysetting();
 
 			result = new JLabel(r1);
 			result.setBounds(0, 0, 1000, 700);
 			SoccerGame.jlp.add(result, new Integer(4));
 			result.setVisible(true);
-			JOptionPane.showMessageDialog(SoccerGame.jlp, "'50¸¸¿ø' È¹µæ ¼º°ø!!! ÃàÇÏÇÕ´Ï´Ù¢¾", "°ÔÀÓ °á°ú", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(SoccerGame.jlp, "ì„±ê³µ! ", "        ", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else
 		{
@@ -81,7 +81,7 @@ public class SoccerManager
 			result.setBounds(0, 0, 1000, 700);
 			SoccerGame.jlp.add(result, new Integer(4));
 			result.setVisible(true);
-			JOptionPane.showMessageDialog(SoccerGame.jlp, "'50¸¸¿ø' È¹µæ ½ÇÆÐ!!! ´ÙÀ½ ±âÈ¸¿¡...¤Ð¤Ð", "°ÔÀÓ °á°ú", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(SoccerGame.jlp, "íŒ¨ë°°..", "        ", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

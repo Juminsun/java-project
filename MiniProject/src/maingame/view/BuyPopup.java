@@ -22,47 +22,47 @@ public class BuyPopup extends JDialog
 
 	public BuyPopup()
 	{
-		// ÆË¾÷ Æ² ¼³Á¤
-		setTitle("±¸Àå ±¸¸ÅÇÏ±â"); // ÆË¾÷ ¼³Á¤ 5Á¾
+		// íŒì—… í‹€ ì„¤ì •
+		setTitle("ê³¼ëª© íšë“í•˜ê¸°"); // íŒì—… ì„¤ì • 5ì¢…
 		setSize(500, 280);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(null);
 
-		JLabel background = new JLabel(pbg); // ÀÌ¹ÌÁö
-		background.setBounds(0, 0, 500, 280); // À§Ä¡ ¹× »çÀÌÁî
+		JLabel background = new JLabel(pbg); // ì´ë¯¸ì§€
+		background.setBounds(0, 0, 500, 280); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
 		String str = String.format("%,d", MarbleGame.st[MarbleManager.posi].getPrice());
 
 		JLabel[] text = new JLabel[3];
 		for (int i=0;i<3;i++)
 		{
-			text[i] = new JLabel(); // »ı¼º
-			text[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 18)); // ±Û²Ã, ÀÏ¹İ, Å©±â
-			text[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
+			text[i] = new JLabel(); // ìƒì„±
+			text[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 18)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
+			text[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
 		}
 
-		text[0].setText("ÇöÀç À§Ä¡´Â \"" + MarbleGame.st[MarbleManager.posi].getName() + "\" ÀÔ´Ï´Ù.");
+		text[0].setText("í˜„ì¬ ìœ„ì¹˜ëŠ” \"" + MarbleGame.st[MarbleManager.posi].getName() + "\" ì…ë‹ˆë‹¤.");
 		text[0].setBounds(0, 40, 500, 30);
-		text[1].setText("±¸ÀåÀÇ °¡°İÀº " + str + "¿ø ÀÔ´Ï´Ù.");
+		text[1].setText("ê³¼ëª©ì´ ìš”êµ¬í•˜ëŠ” ì²´ë ¥ì€" + str + " ì…ë‹ˆë‹¤.");
 		text[1].setBounds(0, 75, 500, 30);
-		text[2].setText("±¸¸ÅÇÏ½Ã°Ú½À´Ï±î?");
+		text[2].setText("íšë“í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 		text[2].setBounds(0, 110, 500, 30);
 
-		JButton yes = new JButton(yb); // ÀÌ¹ÌÁö
-		yes.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		JButton yes = new JButton(yb); // ì´ë¯¸ì§€
+		yes.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		yes.setContentAreaFilled(false);
 		yes.setFocusPainted(false);
-		yes.setBounds(130, 175, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+		yes.setBounds(130, 175, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		// ¿¹ ¹öÆ° ¾×¼Ç(¹«±â¸í)
+		// ì˜ˆ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
 		yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+				dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 
 				if(MarbleGame.st[MarbleManager.posi].getPrice() > MarbleGame.p[MarbleManager.pnum].getMoney())
 				{
-					JOptionPane.showMessageDialog(MarbleGame.jlp, "Çö±İÀÌ ºÎÁ·ÇÕ´Ï´Ù. ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù.", "±¸¸Å °á°ú", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(MarbleGame.jlp, "ì²´ë ¥ì´ ë¶€ì¡±í•©ë‹ˆë‹¤. íšë“í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ê²°ê³¼", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				else
@@ -76,36 +76,36 @@ public class BuyPopup extends JDialog
 								MarbleGame.pst[MarbleManager.pnum][2] = MarbleManager.posi;
 							else
 							{
-								JOptionPane.showMessageDialog(MarbleGame.jlp, "±¸ÀåÀ» ´õ ÀÌ»ó ¼ÒÀ¯ÇÒ ¼ö ¾ø½À´Ï´Ù.", "±¸¸Å °á°ú", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(MarbleGame.jlp, "ê³¼ëª©ì„ ë” ì´ìƒ íšë“í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ê²°ê³¼", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 
-				MarbleGame.st[MarbleManager.posi].setOwner(MarbleManager.pnum); // ¼ÒÀ¯ÀÚ °»½Å
-				MarbleGame.st[MarbleManager.posi].setOwnerCheck(1); // ¼ÒÀ¯ ¿©ºÎ °»½Å
-				MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-MarbleGame.st[MarbleManager.posi].getPrice()); // ±¸¸Å ºñ¿ë Â÷°¨
-				MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()+MarbleGame.st[MarbleManager.posi].getAdmission()); // ¿ù±Ş Ãß°¡
-				JOptionPane.showMessageDialog(MarbleGame.jlp, "±¸¸Å ¼º°øÇÏ¿´½À´Ï´Ù. ÃàÇÏÇÕ´Ï´Ù.", "±¸¸Å °á°ú", JOptionPane.INFORMATION_MESSAGE);
+				MarbleGame.st[MarbleManager.posi].setOwner(MarbleManager.pnum); // ì†Œìœ ì ê°±ì‹ 
+				MarbleGame.st[MarbleManager.posi].setOwnerCheck(1); // ì†Œìœ  ì—¬ë¶€ ê°±ì‹ 
+				MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-MarbleGame.st[MarbleManager.posi].getPrice()); // êµ¬ë§¤ ë¹„ìš© ì°¨ê°
+				MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()+MarbleGame.st[MarbleManager.posi].getAdmission()); // ì›”ê¸‰ ì¶”ê°€
+				JOptionPane.showMessageDialog(MarbleGame.jlp, "íšë“ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤. ì¶•í•˜í•©ë‹ˆë‹¤.", "ê²°ê³¼", JOptionPane.INFORMATION_MESSAGE);
 				
-				mm.border(); // Å×µÎ¸® °»½Å
-				mm.moneysetting(); // µ· ¼¼ÆÃ
-				mm.groundsetting(); // ±¸Àå Ä«µå ¼¼ÆÃ
+				mm.border(); // í…Œë‘ë¦¬ ê°±ì‹ 
+				mm.moneysetting(); // ëˆ ì„¸íŒ…
+				mm.groundsetting(); // êµ¬ì¥ ì¹´ë“œ ì„¸íŒ…
 			}
 		});
 
-		JButton no = new JButton(nb); // ÀÌ¹ÌÁö
-		no.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		JButton no = new JButton(nb); // ì´ë¯¸ì§€
+		no.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		no.setContentAreaFilled(false);
 		no.setFocusPainted(false);
-		no.setBounds(270, 175, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+		no.setBounds(270, 175, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		// ¾Æ´Ï¿À ¹öÆ° ¾×¼Ç(¹«±â¸í)
+		// ì•„ë‹ˆì˜¤ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
 		no.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+				dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 			}
 		});
 
-		// ÆË¾÷¿¡ ÄÄÆ÷³ÍÆ®µé ¿Ã¸®±â
+		// íŒì—…ì— ì»´í¬ë„ŒíŠ¸ë“¤ ì˜¬ë¦¬ê¸°
 		for (int i=0;i<3;i++) {
 			background.add(text[i]);
 		}
@@ -113,6 +113,6 @@ public class BuyPopup extends JDialog
 		background.add(no);
 		add(background);
 
-		setVisible(true); // ÆË¾÷À» º¸¿©ÁÖ±â
+		setVisible(true); // íŒì—…ì„ ë³´ì—¬ì£¼ê¸°
 	}
 }

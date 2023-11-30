@@ -12,14 +12,14 @@ public class PTurn extends JLabel
 	{
 		for(int i=0;i<3;i++)
 		{
-			pturn[i] = new JLabel(); // »ý¼º
+			pturn[i] = new JLabel(); // ìƒì„±
 		}
-		pturn[0].setBounds(130, 385, 20, 20); // À§Ä¡ ¹× »çÀÌÁî
+		pturn[0].setBounds(130, 385, 20, 20); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pturn[1].setBounds(435, 125, 20, 20);
 		pturn[2].setBounds(1135, 385, 20, 20);
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(pturn[i], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(pturn[i], new Integer(5)); // 5ì¸µì— ì¶”ê°€
 		}
 	}
 }

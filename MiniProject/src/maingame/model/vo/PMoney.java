@@ -14,16 +14,16 @@ public class PMoney extends JLabel
 	{
 		for(int i=0;i<3;i++)
 		{
-			pmoney[i] = new JLabel(); // »ý¼º
-			pmoney[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
-			pmoney[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 20)); // ±Û²Ã, ÀÏ¹Ý, Å©±â
+			pmoney[i] = new JLabel(); // ìƒì„±
+			pmoney[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
+			pmoney[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 20)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
 		}
-		pmoney[0].setBounds(195, 435, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+		pmoney[0].setBounds(195, 435, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pmoney[1].setBounds(500, 175, 100, 50);
 		pmoney[2].setBounds(1200, 435, 100, 50);
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(pmoney[i], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(pmoney[i], new Integer(5)); // 5ì¸µì— ì¶”ê°€
 		}
 	}
 }

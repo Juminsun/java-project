@@ -13,12 +13,12 @@ public class SpinButton extends JButton
 
 	public SpinButton()
 	{
-		setIcon(s); // ÀÌ¹ÌÁö
-		addActionListener(se); // ¾×¼Ç Ãß°¡
-		setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		setIcon(s); // ì´ë¯¸ì§€
+		addActionListener(se); // ì•¡ì…˜ ì¶”ê°€
+		setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		setContentAreaFilled(false);
 		setFocusPainted(false);
-		setBounds(700,530,100,50); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(this, new Integer(5)); // 5Ãş¿¡ Ãß°¡
+		setBounds(700,530,100,50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(this, new Integer(5)); // 5ì¸µì— ì¶”ê°€
 	}
 }

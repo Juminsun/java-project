@@ -2,16 +2,16 @@ package maingame.model.vo;
 
 public class Stadium
 {
-	private String name; // ÀÌ¸§
-	private int owner; // ¼ÒÀ¯ÀÚ(ÃÊ±â°ª 3, ÀÌÈÄ 0 ~ 2)
-	private int price; // °¡°İ
-	private int takePrice; // ÀÎ¼öµÈ °¡°İ(ÃÊ±â°ª==°¡°İ, ÀÌÈÄ 10%¾¿ Áõ°¡)
-	private int takeCount; // ÀÎ¼öµÈ È½¼ö
-	private int toll; // ÅëÇà·á(ÀÎ¼öµÈ °¡°İÀÇ 40%)
-	private int admission; // °ü¶÷·á(ÀÎ¼öµÈ °¡°İÀÇ 20%)
-	private int ownerCheck; // ¼ÒÀ¯ ¿©ºÎ(ÃÊ±â°ª 0(0/3/6/9´Â ÃÊ±â°ª 1), ¼ÒÀ¯½Ã 1)
+	private String name; // ì´ë¦„
+	private int owner; // ì†Œìœ ì(ì´ˆê¸°ê°’ 3, ì´í›„ 0 ~ 2)
+	private int price; // ê°€ê²©
+	private int takePrice; // ì¸ìˆ˜ëœ ê°€ê²©(ì´ˆê¸°ê°’==ê°€ê²©, ì´í›„ 10%ì”© ì¦ê°€)
+	private int takeCount; // ì¸ìˆ˜ëœ íšŸìˆ˜
+	private int toll; // í†µí–‰ë£Œ(ì¸ìˆ˜ëœ ê°€ê²©ì˜ 40%)
+	private int admission; // ê´€ëŒë£Œ(ì¸ìˆ˜ëœ ê°€ê²©ì˜ 20%)
+	private int ownerCheck; // ì†Œìœ  ì—¬ë¶€(ì´ˆê¸°ê°’ 0(0/3/6/9ëŠ” ì´ˆê¸°ê°’ 1), ì†Œìœ ì‹œ 1)
 
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public Stadium() {
 
 	}

@@ -13,11 +13,11 @@ public class SoccerGame extends JFrame
 
 	public SoccerGame()
 	{
-		new RulePopup(this, "°ΤΐΣ Ό³Έν", true);
+		new RulePopup(this, "κ²μ„ μ„¤λª…", true);
 
 		jlp = new JLayeredPane();
 
-		setTitle("Γΰ±Έ °ΤΐΣ");
+		setTitle("μ¶•κµ¬ κ²μ„");
 		setSize(1000, 700);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);

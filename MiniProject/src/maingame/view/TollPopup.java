@@ -17,332 +17,333 @@ import minigame.controller.SoccerGame;
 
 public class TollPopup extends JDialog
 {
-	private ImageIcon pbg = new ImageIcon("img/popupbackground.png");
-	private ImageIcon yb = new ImageIcon("img/yesbutton.png");
-	private ImageIcon nb = new ImageIcon("img/nobutton.png");
-	private ImageIcon bkr = new ImageIcon("img/boom.png");
-	private MarbleManager mm = new MarbleManager();
+   private ImageIcon pbg = new ImageIcon("img/popupbackground.png");
+   private ImageIcon yb = new ImageIcon("img/yesbutton.png");
+   private ImageIcon nb = new ImageIcon("img/nobutton.png");
+   private ImageIcon bkr = new ImageIcon("img/boom.png");
+   private MarbleManager mm = new MarbleManager();
 
-	public TollPopup()
-	{
-		// ÆË¾÷ Æ² ¼³Á¤
-		setTitle("±¸Àå ÅëÇà·á ¹× ÀÎ¼öÇÏ±â"); // ÆË¾÷ ¼³Á¤ 5Á¾
-		setSize(500,280);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setLayout(null);
+   public TollPopup()
+   {
+      // íŒì—… í‹€ ì„¤ì •
+      setTitle("ìš”êµ¬ì²´ë ¥ ì§€ë¶ˆ ë° ì¸ìˆ˜í•˜ê¸°"); // íŒì—… ì„¤ì • 5ì¢…
+      setSize(500,280);
+      setResizable(false);
+      setLocationRelativeTo(null);
+      setLayout(null);
 
-		JLabel background = new JLabel(pbg); // ÀÌ¹ÌÁö
-		background.setBounds(0, 0, 500, 280); // À§Ä¡ ¹× »çÀÌÁî
+      JLabel background = new JLabel(pbg); // ì´ë¯¸ì§€
+      background.setBounds(0, 0, 500, 280); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		int num1 = MarbleGame.st[MarbleManager.posi].getToll(); // ÅëÇà·á
-		String str1 = String.format("%,d", num1);
-		double num2 = MarbleGame.st[MarbleManager.posi].getPrice() * (MarbleGame.st[MarbleManager.posi].getTakeCount()+1) * 0.1; // ÀÎ¼öºñ 10%¾¿ Áõ°¡
-		int num3 = MarbleGame.st[MarbleManager.posi].getPrice() + (int)(num2); // ÀÎ¼öºñ
-		String str2 = String.format("%,d", num3);
+      int num1 = MarbleGame.st[MarbleManager.posi].getToll(); // í†µí–‰ë£Œ
+      String str1 = String.format("%,d", num1 / 2); //í†µí–‰ë£Œ     
+      //double num2 = MarbleGame.st[MarbleManager.posi].getPrice() * (MarbleGame.st[MarbleManager.posi].getTakeCount()+1) +50; // ì¸ìˆ˜ë¹„ +50ì”© ì¦ê°€
+      double num2 = 100; // ì¸ìˆ˜ë¹„ +100ì”© ì¦ê°€
+      int num3 = MarbleGame.st[MarbleManager.posi].getPrice() + (int)(num2); // ì¸ìˆ˜ë¹„
+      String str2 = String.format("%,d", num3);
 
-		JLabel[] text = new JLabel[3];
-		for (int i=0;i<3;i++)
-		{
-			text[i] = new JLabel(); // »ı¼º
-			text[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 18)); // ±Û²Ã, ÀÏ¹İ, Å©±â
-			text[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
-		}
+      JLabel[] text = new JLabel[3];
+      for (int i=0;i<3;i++)
+      {
+         text[i] = new JLabel(); // ìƒì„±
+         text[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 18)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
+         text[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
+      }
 
-		text[0].setText("ÇöÀç \"" + MarbleGame.st[MarbleManager.posi].getName() + "\" ÀÇ ÅëÇà·á´Â " + str1 + "¿ø ÀÔ´Ï´Ù.");
-		text[0].setBounds(0, 40, 500, 30);
-		text[1].setText("ÀÎ¼ö ºñ¿ëÀº " + str2 + "¿ø ÀÔ´Ï´Ù.");
-		text[1].setBounds(0, 75, 500, 30);
-		text[2].setText("¸ğµÎ ÁöºÒÇÏ½Ã°Ú½À´Ï±î?");
-		text[2].setBounds(0, 110, 500, 30);
+      text[0].setText("í˜„ì¬ \"" + MarbleGame.st[MarbleManager.posi].getName() + "\" ì˜ ìš”êµ¬ë˜ëŠ” ì²´ë ¥ì€ " + str1 + "ì…ë‹ˆë‹¤.");
+      text[0].setBounds(0, 40, 500, 30);
+      text[1].setText("ì¸ìˆ˜í• ë ¤ë©´ ì²´ë ¥ " + str2 + "ì´ í•„ìš”í•©ë‹ˆë‹¤.");
+      text[1].setBounds(0, 75, 500, 30);
+      text[2].setText("ëª¨ë‘ ì§€ë¶ˆí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
+      text[2].setBounds(0, 110, 500, 30);
 
-		JButton yes = new JButton(yb); // ÀÌ¹ÌÁö
-		yes.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
-		yes.setContentAreaFilled(false);
-		yes.setFocusPainted(false);
-		yes.setBounds(130, 175, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+      JButton yes = new JButton(yb); // ì´ë¯¸ì§€
+      yes.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
+      yes.setContentAreaFilled(false);
+      yes.setFocusPainted(false);
+      yes.setBounds(130, 175, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		// ¿¹ ¹öÆ° ¾×¼Ç(¹«±â¸í)
-		yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+      // ì˜ˆ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
+      yes.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 
-				int count = 0;
+            int count = 0;
 
-				// °¡Áö°í ÀÖ´Â ±¸Àå °¹¼ö Ã¼Å©
-				for(int i=0;i<3;i++)
-				{
-					if(MarbleGame.pst[MarbleManager.pnum][i] != 0)
-						count++;
-				}
+            // ê°€ì§€ê³  ìˆëŠ” êµ¬ì¥ ê°¯ìˆ˜ ì²´í¬
+            for(int i=0;i<3;i++)
+            {
+               if(MarbleGame.pst[MarbleManager.pnum][i] != 0)
+                  count++;
+            }
 
-				// ±¸ÀåÀÌ 3°³¸é, no ¹öÆ°°ú µ¿ÀÏÇÑ ¾×¼Ç(ÅëÇà·á¸¸ ³³ºÎ)
-				if(count == 3)
-				{
-					if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1) // Çö±İÀÌ ÅëÇà·áº¸´Ù ÀûÀ» °æ¿ì
-					{
-						if(MarbleGame.p[MarbleManager.pnum].getProperty() < num1) // ÀüÀç»êÀÌ ÅëÇà·áº¸´Ù ÀûÀ» °æ¿ì
-						{
-							// ÆÄ»ê
-							MarbleGame.p[MarbleManager.pnum].setStatus(0); // ÆÄ»ê »óÅÂ·Î º¯°æ
-							MarbleManager.finalrank[MarbleManager.personcount] = MarbleManager.pnum; // ·©Å©¿¡ ±â·Ï
-							MarbleManager.personcount++; // ÆÄ»ê ÀÎ¿ø Ãß°¡
-							MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-							MarbleGame.p[MarbleManager.pnum].setMoney(0); // Çö±İ ¼Ò¸ê
+            // êµ¬ì¥ì´ 3ê°œë©´, no ë²„íŠ¼ê³¼ ë™ì¼í•œ ì•¡ì…˜(í†µí–‰ë£Œë§Œ ë‚©ë¶€)
+            if(count == 3)
+            {
+               if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1) // í˜„ê¸ˆì´ í†µí–‰ë£Œë³´ë‹¤ ì ì„ ê²½ìš°
+               {
+                  if(MarbleGame.p[MarbleManager.pnum].getProperty() < num1) // ì „ì¬ì‚°ì´ í†µí–‰ë£Œë³´ë‹¤ ì ì„ ê²½ìš°
+                  {
+                     // íŒŒì‚°
+                     MarbleGame.p[MarbleManager.pnum].setStatus(0); // íŒŒì‚° ìƒíƒœë¡œ ë³€ê²½
+                     MarbleManager.finalrank[MarbleManager.personcount] = MarbleManager.pnum; // ë­í¬ì— ê¸°ë¡
+                     MarbleManager.personcount++; // íŒŒì‚° ì¸ì› ì¶”ê°€
+                     MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                     MarbleGame.p[MarbleManager.pnum].setMoney(0); // í˜„ê¸ˆ ì†Œë©¸
 
-							for(int i=0;i<3;i++)
-							{
-								mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // Å×µÎ¸® Á¦°Å
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ¼ÒÀ¯ÀÚ ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ÀÎ¼öµÈ °¡°İ ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ÀÎ¼öµÈ È½¼ö ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.4)); // ÅëÇà·á ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.2)); // °ü¶÷·á ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ¼ÒÀ¯ ¿©ºÎ ÃÊ±âÈ­
-								MarbleGame.pst[MarbleManager.pnum][i] = 0; // Ä«µå Á¦°Å
-							}
+                     for(int i=0;i<3;i++)
+                     {
+                        mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // í…Œë‘ë¦¬ ì œê±°
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ì†Œìœ ì ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ì¸ìˆ˜ëœ ê°€ê²© ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ì¸ìˆ˜ëœ íšŸìˆ˜ ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // í†µí–‰ë£Œ ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // ê´€ëŒë£Œ ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ì†Œìœ  ì—¬ë¶€ ì´ˆê¸°í™”
+                        MarbleGame.pst[MarbleManager.pnum][i] = 0; // ì¹´ë“œ ì œê±°
+                     }
 
-							JOptionPane.showMessageDialog(MarbleGame.jlp, "ÆÄ»êÇÏ¿´½À´Ï´Ù. °ÔÀÓ¿¡ Âü¿©ÇÒ ¼ö ¾ø½À´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-							PBankruptcy.pbankruptcy[MarbleManager.pnum].setIcon(bkr); // ÆÄ»ê ÀÌ¹ÌÁö ¶ç¿ì±â
+                     JOptionPane.showMessageDialog(MarbleGame.jlp, "ì²´ë ¥ê³ ê°ˆ ë˜ì—ˆìŠµë‹ˆë‹¤. ê²Œì„ì— ì°¸ì—¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+                     PBankruptcy.pbankruptcy[MarbleManager.pnum].setIcon(bkr); // íŒŒì‚° ì´ë¯¸ì§€ ë„ìš°ê¸°
 
-							if(MarbleManager.personcount == 2) // ÆÄ»ê ÀÎ¿øÀÌ 2¸íÀÌ¸é, °ÔÀÓ Á¾·á
-							{
-								MarbleManager.gameover();
-							}
-						}
-						else
-						{
-							// ÅëÇà·á ³¾ ¼ö ÀÖÀ» ¸¸Å­, ¼ÒÀ¯ ±¸Àå ÆÈ±â
-							for(int i=2;i>=0;i--)
-							{
-								if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1)
-								{
-									MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice()); // ÆÇ¸Å±İ Ãß°¡
-									MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()-MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getAdmission()); // ¿ù±Ş Â÷°¨
-									mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // Å×µÎ¸® Á¦°Å
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ¼ÒÀ¯ÀÚ ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ÀÎ¼öµÈ °¡°İ ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ÀÎ¼öµÈ È½¼ö ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.4)); // ÅëÇà·á ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.2)); // °ü¶÷·á ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ¼ÒÀ¯ ¿©ºÎ ÃÊ±âÈ­
-									MarbleGame.pst[MarbleManager.pnum][i] = 0; // Ä«µå Á¦°Å
-								}
-							}
+                     if(MarbleManager.personcount == 2) // íŒŒì‚° ì¸ì›ì´ 2ëª…ì´ë©´, ê²Œì„ ì¢…ë£Œ
+                     {
+                        MarbleManager.gameover();
+                     }
+                  }
+                  else
+                  {
+                     // í†µí–‰ë£Œ ë‚¼ ìˆ˜ ìˆì„ ë§Œí¼, ì†Œìœ  êµ¬ì¥ íŒ”ê¸°
+                     for(int i=2;i>=0;i--)
+                     {
+                        if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1)
+                        {
+                           MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice()); // íŒë§¤ê¸ˆ ì¶”ê°€
+                           MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()-MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getAdmission()); // ì›”ê¸‰ ì°¨ê°
+                           mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // í…Œë‘ë¦¬ ì œê±°
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ì†Œìœ ì ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ì¸ìˆ˜ëœ ê°€ê²© ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ì¸ìˆ˜ëœ íšŸìˆ˜ ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // í†µí–‰ë£Œ ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // ê´€ëŒë£Œ ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ì†Œìœ  ì—¬ë¶€ ì´ˆê¸°í™”
+                           MarbleGame.pst[MarbleManager.pnum][i] = 0; // ì¹´ë“œ ì œê±°
+                        }
+                     }
 
-							// ÅëÇà·á¸¸ ³³ºÎ
-							MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-							MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // ÅëÇà·á Â÷°¨
+                     // í†µí–‰ë£Œë§Œ ë‚©ë¶€
+                     MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                     MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // í†µí–‰ë£Œ ì°¨ê°
 
-							JOptionPane.showMessageDialog(MarbleGame.jlp, "¼ÒÀ¯ÇÑ ±¸ÀåÀ» ÆÈ¾Æ, ÅëÇà·á¸¦ ³³ºÎÇÕ´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-						}
-					}
-					else
-					{
-						// ÅëÇà·á¸¸ ³³ºÎ
-						MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-						MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // ÅëÇà·á Â÷°¨
+                     JOptionPane.showMessageDialog(MarbleGame.jlp, "ì†Œìœ í•œ ê³¼ëª©ì„ íŒ”ì•„ ìš”êµ¬ì²´ë ¥ì„ ì§€ë¶ˆí•©ë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+                  }
+               }
+               else
+               {
+                  // í†µí–‰ë£Œë§Œ ë‚©ë¶€
+                  MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                  MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // í†µí–‰ë£Œ ì°¨ê°
 
-						JOptionPane.showMessageDialog(MarbleGame.jlp, "ÀÌ¹Ì ¼ÒÀ¯ÇÑ ±¸ÀåÀÌ 3°³ÀÔ´Ï´Ù. ÅëÇà·á¸¸ ºÎ°úÇÕ´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-				else
-				{
-					if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1+num3) // Çö±İÀÌ ÅëÇà·á+ÀÎ¼öºñº¸´Ù ÀûÀ» °æ¿ì
-					{
-						if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1) // Çö±İÀÌ ÅëÇà·áº¸´Ù ÀûÀ» °æ¿ì
-						{
-							if(MarbleGame.p[MarbleManager.pnum].getProperty() < num1)  // ÀüÀç»êÀÌ ÅëÇà·áº¸´Ù ÀûÀ» °æ¿ì
-							{
-								// ÆÄ»ê
-								MarbleGame.p[MarbleManager.pnum].setStatus(0); // ÆÄ»ê »óÅÂ·Î º¯°æ
-								MarbleManager.finalrank[MarbleManager.personcount] = MarbleManager.pnum; // ·©Å©¿¡ ±â·Ï
-								MarbleManager.personcount++; // ÆÄ»ê ÀÎ¿ø Ãß°¡
-								MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-								MarbleGame.p[MarbleManager.pnum].setMoney(0); // Àç»ê ¼Ò¸ê
+                  JOptionPane.showMessageDialog(MarbleGame.jlp, "ì´ë¯¸ ì†Œìœ í•œ ê³¼ëª©ì´ 3ê°œì…ë‹ˆë‹¤. ìš”êµ¬ì²´ë ¥ë§Œ ì§€ë¶ˆí•©ë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+               }
+            }
+            else
+            {
+               if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1+num3) // í˜„ê¸ˆì´ í†µí–‰ë£Œ+ì¸ìˆ˜ë¹„ë³´ë‹¤ ì ì„ ê²½ìš°
+               {
+                  if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1) // í˜„ê¸ˆì´ í†µí–‰ë£Œë³´ë‹¤ ì ì„ ê²½ìš°
+                  {
+                     if(MarbleGame.p[MarbleManager.pnum].getProperty() < num1)  // ì „ì¬ì‚°ì´ í†µí–‰ë£Œë³´ë‹¤ ì ì„ ê²½ìš°
+                     {
+                        // íŒŒì‚°
+                        MarbleGame.p[MarbleManager.pnum].setStatus(0); // íŒŒì‚° ìƒíƒœë¡œ ë³€ê²½
+                        MarbleManager.finalrank[MarbleManager.personcount] = MarbleManager.pnum; // ë­í¬ì— ê¸°ë¡
+                        MarbleManager.personcount++; // íŒŒì‚° ì¸ì› ì¶”ê°€
+                        MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                        MarbleGame.p[MarbleManager.pnum].setMoney(0); // ì¬ì‚° ì†Œë©¸
 
-								for(int i=0;i<3;i++)
-								{
-									mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // Å×µÎ¸® Á¦°Å
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ¼ÒÀ¯ÀÚ ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ÀÎ¼öµÈ °¡°İ ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ÀÎ¼öµÈ È½¼ö ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.4)); // ÅëÇà·á ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.2)); // °ü¶÷·á ÃÊ±âÈ­
-									MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ¼ÒÀ¯ ¿©ºÎ ÃÊ±âÈ­
-									MarbleGame.pst[MarbleManager.pnum][i] = 0; // Ä«µå Á¦°Å
-								}
+                        for(int i=0;i<3;i++)
+                        {
+                           mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // í…Œë‘ë¦¬ ì œê±°
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ì†Œìœ ì ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ì¸ìˆ˜ëœ ê°€ê²© ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ì¸ìˆ˜ëœ íšŸìˆ˜ ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // í†µí–‰ë£Œ ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // ê´€ëŒë£Œ ì´ˆê¸°í™”
+                           MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ì†Œìœ  ì—¬ë¶€ ì´ˆê¸°í™”
+                           MarbleGame.pst[MarbleManager.pnum][i] = 0; // ì¹´ë“œ ì œê±°
+                        }
 
-								JOptionPane.showMessageDialog(MarbleGame.jlp, "ÆÄ»êÇÏ¿´½À´Ï´Ù. °ÔÀÓ¿¡ Âü¿©ÇÒ ¼ö ¾ø½À´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-								PBankruptcy.pbankruptcy[MarbleManager.pnum].setIcon(bkr); // ÆÄ»ê ÀÌ¹ÌÁö ¶ç¿ì±â
+                        JOptionPane.showMessageDialog(MarbleGame.jlp, "ì²´ë ¥ê³ ê°ˆ ë˜ì—ˆìŠµë‹ˆë‹¤. ê²Œì„ì— ì°¸ì—¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+                        PBankruptcy.pbankruptcy[MarbleManager.pnum].setIcon(bkr); // íŒŒì‚° ì´ë¯¸ì§€ ë„ìš°ê¸°
 
-								if(MarbleManager.personcount == 2) // ÆÄ»ê ÀÎ¿øÀÌ 2¸íÀÌ¸é, °ÔÀÓ Á¾·á
-								{
-									MarbleManager.gameover();
-								}
-							}
-							else
-							{
-								// ÅëÇà·á ³¾ ¼ö ÀÖÀ» ¸¸Å­, ¼ÒÀ¯ ±¸Àå ÆÈ±â
-								for(int i=2;i>=0;i--)
-								{
-									if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1)
-									{
-										MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice()); // ÆÇ¸Å±İ Ãß°¡
-										MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()-MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getAdmission()); // ¿ù±Ş Â÷°¨
-										mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // Å×µÎ¸® Á¦°Å
-										MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ¼ÒÀ¯ÀÚ ÃÊ±âÈ­
-										MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ÀÎ¼öµÈ °¡°İ ÃÊ±âÈ­
-										MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ÀÎ¼öµÈ È½¼ö ÃÊ±âÈ­
-										MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.4)); // ÅëÇà·á ÃÊ±âÈ­
-										MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.2)); // °ü¶÷·á ÃÊ±âÈ­
-										MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ¼ÒÀ¯ ¿©ºÎ ÃÊ±âÈ­
-										MarbleGame.pst[MarbleManager.pnum][i] = 0; // Ä«µå Á¦°Å
-									}
-								}
+                        if(MarbleManager.personcount == 2) // íŒŒì‚° ì¸ì›ì´ 2ëª…ì´ë©´, ê²Œì„ ì¢…ë£Œ
+                        {
+                           MarbleManager.gameover();
+                        }
+                     }
+                     else
+                     {
+                        // í†µí–‰ë£Œ ë‚¼ ìˆ˜ ìˆì„ ë§Œí¼, ì†Œìœ  êµ¬ì¥ íŒ”ê¸°
+                        for(int i=2;i>=0;i--)
+                        {
+                           if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1)
+                           {
+                              MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice()); // íŒë§¤ê¸ˆ ì¶”ê°€
+                              MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()-MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getAdmission()); // ì›”ê¸‰ ì°¨ê°
+                              mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // í…Œë‘ë¦¬ ì œê±°
+                              MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ì†Œìœ ì ì´ˆê¸°í™”
+                              MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ì¸ìˆ˜ëœ ê°€ê²© ì´ˆê¸°í™”
+                              MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ì¸ìˆ˜ëœ íšŸìˆ˜ ì´ˆê¸°í™”
+                              MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // í†µí–‰ë£Œ ì´ˆê¸°í™”
+                              MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // ê´€ëŒë£Œ ì´ˆê¸°í™”
+                              MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ì†Œìœ  ì—¬ë¶€ ì´ˆê¸°í™”
+                              MarbleGame.pst[MarbleManager.pnum][i] = 0; // ì¹´ë“œ ì œê±°
+                           }
+                        }
 
-								// ÅëÇà·á¸¸ ³³ºÎ
-								MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-								MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // ÅëÇà·á Â÷°¨
+                        // í†µí–‰ë£Œë§Œ ë‚©ë¶€
+                        MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                        MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // í†µí–‰ë£Œ ì°¨ê°
 
-								JOptionPane.showMessageDialog(MarbleGame.jlp, "¼ÒÀ¯ÇÑ ±¸ÀåÀ» ÆÈ¾Æ, ÅëÇà·á¸¦ ³³ºÎÇÕ´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-							}
-						}
-						else
-						{
-							// ÅëÇà·á¸¸ ³³ºÎ
-							MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-							MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // ÅëÇà·á Â÷°¨
+                        JOptionPane.showMessageDialog(MarbleGame.jlp, "ì†Œìœ í•œ ê³¼ëª©ì„ íŒ”ì•„, ìš”êµ¬ì²´ë ¥ì„ ì§€ë¶ˆí•©ë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+                     }
+                  }
+                  else
+                  {
+                     // í†µí–‰ë£Œë§Œ ë‚©ë¶€
+                     MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                     MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // í†µí–‰ë£Œ ì°¨ê°
 
-							JOptionPane.showMessageDialog(MarbleGame.jlp, "Çö±İÀÌ ºÎÁ·ÇÏ¿© ÀÎ¼öÇÒ ¼ö ¾ø½À´Ï´Ù. ÅëÇà·á¸¸ Á¤»ó ³³ºÎµÇ¾ú½À´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.INFORMATION_MESSAGE);
-						}
-					}
-					else
-					{
-						// ÅëÇà·á ³³ºÎ ¹× ÀÎ¼ö ¼º°ø
-						MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1+num3); // ÅëÇà·á+ÀÎ¼öºñ Áö±Ş
-						MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setSalary(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getSalary()-MarbleGame.st[MarbleManager.posi].getAdmission()); // ¿ù±Ş Â÷°¨
-						// Ä«µå Á¦°Å
-						for(int i=0;i<3;i++)
-						{
-							if(MarbleGame.pst[MarbleGame.st[MarbleManager.posi].getOwner()][i] == MarbleManager.posi)
-							{
-								MarbleGame.pst[MarbleGame.st[MarbleManager.posi].getOwner()][i] = 0;
-								break;
-							}
-						}
+                     JOptionPane.showMessageDialog(MarbleGame.jlp, "ì²´ë ¥ì´ ë¶€ì¡±í•˜ì—¬ ì¸ìˆ˜í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ìš”êµ¬ì²´ë ¥ë§Œ ì§€ë¶ˆë˜ì—ˆìŠµë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.INFORMATION_MESSAGE);
+                  }
+               }
+               else
+               {
+                  // í†µí–‰ë£Œ ë‚©ë¶€ ë° ì¸ìˆ˜ ì„±ê³µ
+                  MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1+num3); // í†µí–‰ë£Œ+ì¸ìˆ˜ë¹„ ì§€ê¸‰
+                  MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setSalary(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getSalary()-MarbleGame.st[MarbleManager.posi].getAdmission()); // ì›”ê¸‰ ì°¨ê°
+                  // ì¹´ë“œ ì œê±°
+                  for(int i=0;i<3;i++)
+                  {
+                     if(MarbleGame.pst[MarbleGame.st[MarbleManager.posi].getOwner()][i] == MarbleManager.posi)
+                     {
+                        MarbleGame.pst[MarbleGame.st[MarbleManager.posi].getOwner()][i] = 0;
+                        break;
+                     }
+                  }
 
-						MarbleGame.st[MarbleManager.posi].setOwner(MarbleManager.pnum); // ¼ÒÀ¯ÀÚ °»½Å
-						MarbleGame.st[MarbleManager.posi].setTakePrice(num3); // ÀÎ¼öµÈ °¡°İ °»½Å
-						MarbleGame.st[MarbleManager.posi].setTakeCount(MarbleGame.st[MarbleManager.posi].getTakeCount()+1); // ÀÎ¼öµÈ È½¼ö °»½Å
-						MarbleGame.st[MarbleManager.posi].setToll((int)(MarbleGame.st[MarbleManager.posi].getTakePrice()*0.4)); // ÅëÇà·á °»½Å
-						MarbleGame.st[MarbleManager.posi].setAdmission((int)(MarbleGame.st[MarbleManager.posi].getTakePrice()*0.2)); // °ü¶÷·á °»½Å
-						MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1-num3); // ÅëÇà·á+ÀÎ¼öºñ Â÷°¨
-						MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()+MarbleGame.st[MarbleManager.posi].getAdmission()); // ¿ù±Ş Ãß°¡
-						mm.border(); // Å×µÎ¸® °»½Å
-						MarbleGame.pst[MarbleManager.pnum][count] = MarbleManager.posi; // Ä«µå Ãß°¡
+                  MarbleGame.st[MarbleManager.posi].setOwner(MarbleManager.pnum); // ì†Œìœ ì ê°±ì‹ 
+                  MarbleGame.st[MarbleManager.posi].setTakePrice(num3); // ì¸ìˆ˜ëœ ê°€ê²© ê°±ì‹ 
+                  MarbleGame.st[MarbleManager.posi].setTakeCount(MarbleGame.st[MarbleManager.posi].getTakeCount()+1); // ì¸ìˆ˜ëœ íšŸìˆ˜ ê°±ì‹ 
+                  MarbleGame.st[MarbleManager.posi].setToll((int)(MarbleGame.st[MarbleManager.posi].getTakePrice()*0.4)); // í†µí–‰ë£Œ ê°±ì‹ 
+                  MarbleGame.st[MarbleManager.posi].setAdmission((int)(MarbleGame.st[MarbleManager.posi].getTakePrice()*0.2)); // ê´€ëŒë£Œ ê°±ì‹ 
+                  MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1-num3); // í†µí–‰ë£Œ+ì¸ìˆ˜ë¹„ ì°¨ê°
+                  MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()+MarbleGame.st[MarbleManager.posi].getAdmission()); // ì›”ê¸‰ ì¶”ê°€
+                  mm.border(); // í…Œë‘ë¦¬ ê°±ì‹ 
+                  MarbleGame.pst[MarbleManager.pnum][count] = MarbleManager.posi; // ì¹´ë“œ ì¶”ê°€
 
-						JOptionPane.showMessageDialog(MarbleGame.jlp, "Á¤»ó ÀÎ¼öµÇ¾ú½À´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.INFORMATION_MESSAGE);
-					}
-				}
+                  JOptionPane.showMessageDialog(MarbleGame.jlp, "ì •ìƒ ì¸ìˆ˜ë˜ì—ˆìŠµë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.INFORMATION_MESSAGE);
+               }
+            }
 
-				mm.moneysetting(); // µ· ¼¼ÆÃ
-				mm.groundsetting(); // ±¸Àå Ä«µå ¼¼ÆÃ
-			}
-		});
+            mm.moneysetting(); // ëˆ ì„¸íŒ…
+            mm.groundsetting(); // êµ¬ì¥ ì¹´ë“œ ì„¸íŒ…
+         }
+      });
 
-		JButton no = new JButton(nb); // ÀÌ¹ÌÁö
-		no.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
-		no.setContentAreaFilled(false);
-		no.setFocusPainted(false);
-		no.setBounds(270, 175, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+      JButton no = new JButton(nb); // ì´ë¯¸ì§€
+      no.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
+      no.setContentAreaFilled(false);
+      no.setFocusPainted(false);
+      no.setBounds(270, 175, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		// ¾Æ´Ï¿À ¹öÆ° ¾×¼Ç(¹«±â¸í)
-		no.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+      // ì•„ë‹ˆì˜¤ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
+      no.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 
-				if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1) // Çö±İÀÌ ÅëÇà·áº¸´Ù ÀûÀ» °æ¿ì
-				{
-					if(MarbleGame.p[MarbleManager.pnum].getProperty() < num1) // ÀüÀç»êÀÌ ÅëÇà·áº¸´Ù ÀûÀ» °æ¿ì
-					{
-						// ÆÄ»ê
-						MarbleGame.p[MarbleManager.pnum].setStatus(0); // ÆÄ»ê »óÅÂ·Î º¯°æ
-						MarbleManager.finalrank[MarbleManager.personcount] = MarbleManager.pnum; // ·©Å©¿¡ ±â·Ï
-						MarbleManager.personcount++; // ÆÄ»ê ÀÎ¿ø Ãß°¡
-						MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-						MarbleGame.p[MarbleManager.pnum].setMoney(0); // Àç»ê ¼Ò¸ê
+            if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1) // í˜„ê¸ˆì´ í†µí–‰ë£Œë³´ë‹¤ ì ì„ ê²½ìš°
+            {
+               if(MarbleGame.p[MarbleManager.pnum].getProperty() < num1) // ì „ì¬ì‚°ì´ í†µí–‰ë£Œë³´ë‹¤ ì ì„ ê²½ìš°
+               {
+                  // íŒŒì‚°
+                  MarbleGame.p[MarbleManager.pnum].setStatus(0); // íŒŒì‚° ìƒíƒœë¡œ ë³€ê²½
+                  MarbleManager.finalrank[MarbleManager.personcount] = MarbleManager.pnum; // ë­í¬ì— ê¸°ë¡
+                  MarbleManager.personcount++; // íŒŒì‚° ì¸ì› ì¶”ê°€
+                  MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                  MarbleGame.p[MarbleManager.pnum].setMoney(0); // ì¬ì‚° ì†Œë©¸
 
-						for(int i=0;i<3;i++)
-						{
-							mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // Å×µÎ¸® Á¦°Å
-							MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ¼ÒÀ¯ÀÚ ÃÊ±âÈ­
-							MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ÀÎ¼öµÈ °¡°İ ÃÊ±âÈ­
-							MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ÀÎ¼öµÈ È½¼ö ÃÊ±âÈ­
-							MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.4)); // ÅëÇà·á ÃÊ±âÈ­
-							MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.2)); // °ü¶÷·á ÃÊ±âÈ­
-							MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ¼ÒÀ¯ ¿©ºÎ ÃÊ±âÈ­
-							MarbleGame.pst[MarbleManager.pnum][i] = 0; // Ä«µå Á¦°Å
-						}
+                  for(int i=0;i<3;i++)
+                  {
+                     mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // í…Œë‘ë¦¬ ì œê±°
+                     MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ì†Œìœ ì ì´ˆê¸°í™”
+                     MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ì¸ìˆ˜ëœ ê°€ê²© ì´ˆê¸°í™”
+                     MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ì¸ìˆ˜ëœ íšŸìˆ˜ ì´ˆê¸°í™”
+                     MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // í†µí–‰ë£Œ ì´ˆê¸°í™”
+                     MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // ê´€ëŒë£Œ ì´ˆê¸°í™”
+                     MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ì†Œìœ  ì—¬ë¶€ ì´ˆê¸°í™”
+                     MarbleGame.pst[MarbleManager.pnum][i] = 0; // ì¹´ë“œ ì œê±°
+                  }
 
-						JOptionPane.showMessageDialog(MarbleGame.jlp, "ÆÄ»êÇÏ¿´½À´Ï´Ù. °ÔÀÓ¿¡ Âü¿©ÇÒ ¼ö ¾ø½À´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-						PBankruptcy.pbankruptcy[MarbleManager.pnum].setIcon(bkr); // ÆÄ»ê ÀÌ¹ÌÁö ¶ç¿ì±â
+                  JOptionPane.showMessageDialog(MarbleGame.jlp, "ì²´ë ¥ê³ ê°ˆ ë˜ì—ˆìŠµë‹ˆë‹¤. ê²Œì„ì— ì°¸ì—¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+                  PBankruptcy.pbankruptcy[MarbleManager.pnum].setIcon(bkr); // íŒŒì‚° ì´ë¯¸ì§€ ë„ìš°ê¸°
 
-						if(MarbleManager.personcount == 2) // ÆÄ»ê ÀÎ¿øÀÌ 2¸íÀÌ¸é, °ÔÀÓ Á¾·á
-						{
-							MarbleManager.gameover();
-						}
-					}
-					else
-					{
-						// ÅëÇà·á ³¾ ¼ö ÀÖÀ» ¸¸Å­, ¼ÒÀ¯ ±¸Àå ÆÈ±â
-						for(int i=2;i>=0;i--)
-						{
-							if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1)
-							{
-								MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice()); // ÆÇ¸Å±İ Ãß°¡
-								MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()-MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getAdmission()); // ¿ù±Ş Â÷°¨
-								mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // Å×µÎ¸® Á¦°Å
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ¼ÒÀ¯ÀÚ ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ÀÎ¼öµÈ °¡°İ ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ÀÎ¼öµÈ È½¼ö ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.4)); // ÅëÇà·á ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()*0.2)); // °ü¶÷·á ÃÊ±âÈ­
-								MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ¼ÒÀ¯ ¿©ºÎ ÃÊ±âÈ­
-								MarbleGame.pst[MarbleManager.pnum][i] = 0; // Ä«µå Á¦°Å
-							}
-						}
+                  if(MarbleManager.personcount == 2) // íŒŒì‚° ì¸ì›ì´ 2ëª…ì´ë©´, ê²Œì„ ì¢…ë£Œ
+                  {
+                     MarbleManager.gameover();
+                  }
+               }
+               else
+               {
+                  // í†µí–‰ë£Œ ë‚¼ ìˆ˜ ìˆì„ ë§Œí¼, ì†Œìœ  êµ¬ì¥ íŒ”ê¸°
+                  for(int i=2;i>=0;i--)
+                  {
+                     if(MarbleGame.p[MarbleManager.pnum].getMoney() < num1)
+                     {
+                        MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice()); // íŒë§¤ê¸ˆ ì¶”ê°€
+                        MarbleGame.p[MarbleManager.pnum].setSalary(MarbleGame.p[MarbleManager.pnum].getSalary()-MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getAdmission()); // ì›”ê¸‰ ì°¨ê°
+                        mm.nonborder(MarbleGame.pst[MarbleManager.pnum][i]); // í…Œë‘ë¦¬ ì œê±°
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwner(3); // ì†Œìœ ì ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakePrice(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice()); // ì¸ìˆ˜ëœ ê°€ê²© ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setTakeCount(0); // ì¸ìˆ˜ëœ íšŸìˆ˜ ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setToll((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // í†µí–‰ë£Œ ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setAdmission((int)(MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getPrice())); // ê´€ëŒë£Œ ì´ˆê¸°í™”
+                        MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].setOwnerCheck(0); // ì†Œìœ  ì—¬ë¶€ ì´ˆê¸°í™”
+                        MarbleGame.pst[MarbleManager.pnum][i] = 0; // ì¹´ë“œ ì œê±°
+                     }
+                  }
 
-						// ÅëÇà·á¸¸ ³³ºÎ
-						MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-						MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // ÅëÇà·á Â÷°¨
+                  // í†µí–‰ë£Œë§Œ ë‚©ë¶€
+                  MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+                  MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // í†µí–‰ë£Œ ì°¨ê°
 
-						JOptionPane.showMessageDialog(MarbleGame.jlp, "¼ÒÀ¯ÇÑ ±¸ÀåÀ» ÆÈ¾Æ, ÅëÇà·á¸¦ ³³ºÎÇÕ´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-				else
-				{
-					// ÅëÇà·á¸¸ ³³ºÎ
-					MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // ÅëÇà·á Áö±Ş
-					MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // ÅëÇà·á Â÷°¨
+                  JOptionPane.showMessageDialog(MarbleGame.jlp, "ì†Œìœ í•œ ê³¼ëª©ì„ íŒ”ì•„, ìš”êµ¬ì²´ë ¥ì„ ì§€ë¶ˆí•©ë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+               }
+            }
+            else
+            {
+               // í†µí–‰ë£Œë§Œ ë‚©ë¶€
+               MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].setMoney(MarbleGame.p[MarbleGame.st[MarbleManager.posi].getOwner()].getMoney()+num1); // í†µí–‰ë£Œ ì§€ê¸‰
+               MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()-num1); // í†µí–‰ë£Œ ì°¨ê°
 
-					JOptionPane.showMessageDialog(MarbleGame.jlp, "ÅëÇà·á°¡ Á¤»ó ³³ºÎµÇ¾ú½À´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.INFORMATION_MESSAGE);
-				}
+               JOptionPane.showMessageDialog(MarbleGame.jlp, "ìš”êµ¬ì²´ë ¥ì´ ì •ìƒ ì§€ë¶ˆë˜ì—ˆìŠµë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.INFORMATION_MESSAGE);
+            }
 
-				mm.moneysetting(); // µ· ¼¼ÆÃ
-				mm.groundsetting(); // ±¸Àå Ä«µå ¼¼ÆÃ
-			}
-		});
+            mm.moneysetting(); // ëˆ ì„¸íŒ…
+            mm.groundsetting(); // êµ¬ì¥ ì¹´ë“œ ì„¸íŒ…
+         }
+      });
 
-		// ÆË¾÷¿¡ ÄÄÆ÷³ÍÆ®µé ¿Ã¸®±â
-		for (int i=0;i<3;i++)
-		{
-			background.add(text[i]);
-		}
-		background.add(yes);
-		background.add(no);
-		add(background);
+      // íŒì—…ì— ì»´í¬ë„ŒíŠ¸ë“¤ ì˜¬ë¦¬ê¸°
+      for (int i=0;i<3;i++)
+      {
+         background.add(text[i]);
+      }
+      background.add(yes);
+      background.add(no);
+      add(background);
 
-		setVisible(true); // ÆË¾÷À» º¸¿©ÁÖ±â
-	}
+      setVisible(true); // íŒì—…ì„ ë³´ì—¬ì£¼ê¸°
+   }
 }

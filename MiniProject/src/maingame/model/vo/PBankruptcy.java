@@ -12,15 +12,15 @@ public class PBankruptcy extends JLabel
 	{
 		for(int i=0;i<3;i++)
 		{
-			pbankruptcy[i] = new JLabel(); // »ý¼º
+			pbankruptcy[i] = new JLabel(); // ìƒì„±
 		}
-		pbankruptcy[0].setBounds(110, 360, 270, 295); // À§Ä¡ ¹× »çÀÌÁî
+		pbankruptcy[0].setBounds(110, 360, 270, 295); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pbankruptcy[1].setBounds(630, 0, 270, 295);
 		pbankruptcy[2].setBounds(1125, 360, 270, 295);
 
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(pbankruptcy[i], new Integer(6)); // 6Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(pbankruptcy[i], new Integer(6)); // 6ì¸µì— ì¶”ê°€
 		}
 	}
 }

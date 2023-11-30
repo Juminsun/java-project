@@ -13,12 +13,12 @@ public class StartButton extends JButton
 
 	public StartButton()
 	{
-		setIcon(sb); // ÀÌ¹ÌÁö
-		addActionListener(se); // ¾×¼Ç Ãß°¡
-		setBorderPainted(false); // Å×µÎ¸® Á¦°Å(¾ÕÀ¸·Î ¹öÆ° ¼³Á¤ 3Á¾)
-		setContentAreaFilled(false); // ºó °ø°£ Åõ¸íÇÏ°Ô
-		setFocusPainted(false); // Æ÷Ä¿½º µÉ ¶§, Å×µÎ¸® Á¦°Å
-		setBounds(625, 750, 250, 130); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(this, new Integer(1)); // 1Ãş¿¡ Ãß°¡
+		setIcon(sb); // ì´ë¯¸ì§€
+		addActionListener(se); // ì•¡ì…˜ ì¶”ê°€
+		setBorderPainted(false); // í…Œë‘ë¦¬ ì œê±°(ì•ìœ¼ë¡œ ë²„íŠ¼ ì„¤ì • 3ì¢…)
+		setContentAreaFilled(false); // ë¹ˆ ê³µê°„ íˆ¬ëª…í•˜ê²Œ
+		setFocusPainted(false); // í¬ì»¤ìŠ¤ ë  ë•Œ, í…Œë‘ë¦¬ ì œê±°
+		setBounds(625, 750, 250, 130); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(this, new Integer(1)); // 1ì¸µì— ì¶”ê°€
 	}
 }

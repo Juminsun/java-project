@@ -15,33 +15,33 @@ public class BholePopup extends JDialog
 
 	public BholePopup()
 	{
-		// ÆË¾÷ Æ² ¼³Á¤
-		setTitle("ºí·¢È¦ ÀÔÀå"); // ÆË¾÷ ¼³Á¤ 5Á¾
+		// íŒì—… í‹€ ì„¤ì •
+		setTitle("ë¸”ë™í™€ ì…ì¥"); // íŒì—… ì„¤ì • 5ì¢…
 		setSize(500, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(null);
 
-		JLabel warn = new JLabel(bbg); // ÀÌ¹ÌÁö
-		warn.setBounds(0, 0, 500, 500); // À§Ä¡ ¹× »çÀÌÁî
+		JLabel warn = new JLabel(bbg); // ì´ë¯¸ì§€
+		warn.setBounds(0, 0, 500, 500); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		JButton ok = new JButton(bb); // ÀÌ¹ÌÁö
-		ok.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		JButton ok = new JButton(bb); // ì´ë¯¸ì§€
+		ok.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		ok.setContentAreaFilled(false);
 		ok.setFocusPainted(false);
-		ok.setBounds(0, 300, 200, 100); // À§Ä¡ ¹× »çÀÌÁî
+		ok.setBounds(0, 300, 200, 100); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		// È®ÀÎ ¹öÆ° ¾×¼Ç(¹«±â¸í)
+		// í™•ì¸ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+				dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 			}
 		});
 
-		// ÆË¾÷¿¡ ÄÄÆ÷³ÍÆ®µé ¿Ã¸®±â
+		// íŒì—…ì— ì»´í¬ë„ŒíŠ¸ë“¤ ì˜¬ë¦¬ê¸°
 		warn.add(ok);
 		add(warn);
 
-		setVisible(true); // ÆË¾÷À» º¸¿©ÁÖ±â
+		setVisible(true); // íŒì—…ì„ ë³´ì—¬ì£¼ê¸°
 	}
 }

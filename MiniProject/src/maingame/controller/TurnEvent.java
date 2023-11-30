@@ -11,11 +11,11 @@ public class TurnEvent implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		mm.turndice(); // ÁÖ»çÀ§ µ¹¸®±â
-		mm.diceimage(); // °ª¿¡ µû¸¥ ÁÖ»çÀ§ ÀÌ¹ÌÁö
-		mm.sortdice(); // ÁÖ»çÀ§ °ª ³»¸²Â÷¼ø Á¤·Ä
-		mm.rank(); // ÇÃ·¹ÀÌ¾î ÀÎµ¦½º ÃßÃâ ÈÄ, ¼ø¼­ Á¤ÇÏ±â
+		mm.turndice(); // ì£¼ì‚¬ìœ„ ëŒë¦¬ê¸°
+		mm.diceimage(); // ê°’ì— ë”°ë¥¸ ì£¼ì‚¬ìœ„ ì´ë¯¸ì§€
+		mm.sortdice(); // ì£¼ì‚¬ìœ„ ê°’ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
+		mm.rank(); // í”Œë ˆì´ì–´ ì¸ë±ìŠ¤ ì¶”ì¶œ í›„, ìˆœì„œ ì •í•˜ê¸°
 
-		TurnButton.tb.setVisible(false); // µ¹¸®±â ¹öÆ° 1¹ø ´©¸¥ µÚ, »ç¶óÁö±â
+		TurnButton.tb.setVisible(false); // ëŒë¦¬ê¸° ë²„íŠ¼ 1ë²ˆ ëˆ„ë¥¸ ë’¤, ì‚¬ë¼ì§€ê¸°
 	}
 }

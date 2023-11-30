@@ -2,17 +2,17 @@ package maingame.model.vo;
 
 public class Player
 {
-	private String name; // ÀÌ¸§
-	private int money; // Çö±İ ÀÚ»ê
-	private int turn; // ÀÚ½ÅÀÇ ÅÏ(1 ~ 3)
-	private int round; // ¹ÙÄû ¼ö(2°¡ µÇ¸é °ÔÀÓ Á¾·á)
-	private int position; // Çö À§Ä¡(0 ~ 11)
-	private int salary; // ¿ù±Ş(°ü¶÷·á)
-	private int status; // ÆÄ»ê ¿©ºÎ(ÃÊ±â°ª 1, ÆÄ»ê½Ã 0)
-	private int black; // ºí·¢È¦ ¿©ºÎ(ÃÊ±â°ª 1, ºí·¢È¦½Ã 0)
-	private int property; // Àü Àç»ê(ÃÊ±â°ª 0, ÀÌÈÄ Áö¼ÓÀûÀÎ °»½Å°ª À¯Áö)
+	private String name; // ì´ë¦„
+	private int money; // í˜„ê¸ˆ ìì‚°
+	private int turn; // ìì‹ ì˜ í„´(1 ~ 3)
+	private int round; // ë°”í€´ ìˆ˜(2ê°€ ë˜ë©´ ê²Œì„ ì¢…ë£Œ)
+	private int position; // í˜„ ìœ„ì¹˜(0 ~ 11)
+	private int salary; // ì›”ê¸‰(ê´€ëŒë£Œ)
+	private int status; // íŒŒì‚° ì—¬ë¶€(ì´ˆê¸°ê°’ 1, íŒŒì‚°ì‹œ 0)
+	private int black; // ë¸”ë™í™€ ì—¬ë¶€(ì´ˆê¸°ê°’ 1, ë¸”ë™í™€ì‹œ 0)
+	private int property; // ì „ ì¬ì‚°(ì´ˆê¸°ê°’ 0, ì´í›„ ì§€ì†ì ì¸ ê°±ì‹ ê°’ ìœ ì§€)
 
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public Player() {
 
 	}

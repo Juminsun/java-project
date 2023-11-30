@@ -15,12 +15,12 @@ public class TurnButton extends JButton
 
 	public TurnButton()
 	{
-		tb = new JButton(t); // ÀÌ¹ÌÁö
-		tb.addActionListener(te); // ¾×¼Ç Ãß°¡
-		tb.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
+		tb = new JButton(t); // ì´ë¯¸ì§€
+		tb.addActionListener(te); // ì•¡ì…˜ ì¶”ê°€
+		tb.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
 		tb.setContentAreaFilled(false);
 		tb.setFocusPainted(false);
-		tb.setBounds(700, 575, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(tb, new Integer(3)); // 3Ãş¿¡ Ãß°¡
+		tb.setBounds(700, 575, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(tb, new Integer(3)); // 3ì¸µì— ì¶”ê°€
 	}
 }

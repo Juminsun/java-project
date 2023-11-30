@@ -11,8 +11,8 @@ public class StartBackground extends JLabel
 
 	public StartBackground()
 	{
-		setIcon(sbg); // ÀÌ¹ÌÁö
-		setBounds(0, 0, 1500, 1000); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(this, new Integer(0)); // 0Ãş¿¡ Ãß°¡
+		setIcon(sbg); // ì´ë¯¸ì§€
+		setBounds(0, 0, 1500, 1000); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(this, new Integer(0)); // 0ì¸µì— ì¶”ê°€
 	}
 }

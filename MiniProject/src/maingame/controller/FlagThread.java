@@ -7,9 +7,9 @@ public class FlagThread extends Thread
 {
 	public void run()
 	{
-		PFlagmove.pflagmove.setLocation(PFlag.pflag[MarbleManager.pnum][MarbleManager.startIndex].getX(), PFlag.pflag[MarbleManager.pnum][MarbleManager.startIndex].getY()); // ¸» ÀÌµ¿ ½ÃÀÛ À§Ä¡ ÁÂÇ¥
-		int n1 = MarbleGame.p[MarbleManager.pnum].getPosition(); // µµÂø ÀÎµ¦½º
-		int dicenum = MarbleManager.pdicenum[0] + MarbleManager.pdicenum[1] - 6; // ÁÖ»çÀ§ ¼ö ÇÕ
+		PFlagmove.pflagmove.setLocation(PFlag.pflag[MarbleManager.pnum][MarbleManager.startIndex].getX(), PFlag.pflag[MarbleManager.pnum][MarbleManager.startIndex].getY()); // ë§ ì´ë™ ì‹œì‘ ìœ„ì¹˜ ì¢Œí‘œ
+		int n1 = MarbleGame.p[MarbleManager.pnum].getPosition(); // ë„ì°© ì¸ë±ìŠ¤
+		int dicenum = MarbleManager.pdicenum[0] + MarbleManager.pdicenum[1] - 6; // ì£¼ì‚¬ìœ„ ìˆ˜ í•©
 		int dochack = 0;
 
 		if((n1-dicenum) < 0)
@@ -17,7 +17,7 @@ public class FlagThread extends Thread
 		else
 			dochack = n1 - dicenum;
 
-		if(dicenum > 0) // ¾ÕÀ¸·Î °¡±â
+		if(dicenum > 0) // ì•ìœ¼ë¡œ ê°€ê¸°
 		{
 			for(int i=MarbleManager.startIndex;i<MarbleManager.endIndex;i++)
 			{
@@ -109,7 +109,7 @@ public class FlagThread extends Thread
 			}
 		}
 		else
-			if(dicenum < 0) // µÚ·Î °¡±â
+			if(dicenum < 0) // ë’¤ë¡œ ê°€ê¸°
 			{
 				for(int i=MarbleManager.startIndex;i>MarbleManager.endIndex; i--)
 				{

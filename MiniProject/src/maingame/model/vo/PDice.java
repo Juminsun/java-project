@@ -6,19 +6,19 @@ import maingame.controller.MarbleGame;
 
 public class PDice extends JLabel
 {
-	public static JLabel[] pdice = new JLabel[2];
+   public static JLabel[] pdice = new JLabel[2];
 
-	public PDice()
-	{
-		for(int i=0;i<2;i++)
-		{
-			pdice[i] = new JLabel(); // »ý¼º
-		}
-		pdice[0].setBounds(650,450,50,50); // À§Ä¡ ¹× »çÀÌÁî
-		pdice[1].setBounds(800,450,50,50);
-		for(int i=0;i<2;i++)
-		{
-			MarbleGame.jlp.add(pdice[i], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
-		}
-	}
+   public PDice()
+   {
+      for(int i=0;i<2;i++)
+      {
+         pdice[i] = new JLabel(); // ìƒì„±
+      }
+      pdice[0].setBounds(720,450,60,60); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+      pdice[1].setBounds(800,450,50,50);
+      for(int i=0;i<2;i++)
+      {
+         MarbleGame.jlp.add(pdice[i], new Integer(5)); // 5ì¸µì— ì¶”ê°€
+      }
+   }
 }

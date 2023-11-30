@@ -28,622 +28,622 @@ import minigame.controller.SoccerGame;
 
 public class MarbleManager
 {
-	public static int[] ranking = new int[3]; // ¼ø¼­ ÀÎµ¦½º °ªÀÌ ÀúÀåµÈ ¹è¿­
-	public static int pnum = 0; // °ÔÀÓ ÁßÀÎ ÇÃ·¹ÀÌ¾î ¹øÈ£
-	public static int posi = 0; // ÇöÀç À§Ä¡
-	public static int personcount = 0; // ÆÄ»êÀÎ »ç¶÷ ¼ö
-	public static int[] finalrank = new int[3]; // ÃÖÁ¾ ·©Å·¿¡ ¾²ÀÏ ¿ª¼ø ¹è¿­
-
-	static int[] pdicenum = new int[2];  // °ÔÀÓ ÁÖ»çÀ§ µ¹¸° °ªÀÌ ÀúÀåµÈ ¹è¿­
-	static int startIndex;
-	static int endIndex;
-	static int moveIndex;
-
-	private ImageIcon y = new ImageIcon("img/yellow.png");
-	private ImageIcon b = new ImageIcon("img/blue.png");
-	private ImageIcon g = new ImageIcon("img/green.png");
-	private int[] dicenum = new int[3]; // ¼ø¼­ Á¤ÇÏ´Â ÁÖ»çÀ§ µ¹¸° °ªÀÌ ÀúÀåµÈ ¹è¿­
-	private int[] dicenum_copy = new int[3]; // ÁÖ»çÀ§ µ¹¸° °ªÀ» º¹»ç ¹Ş¾Æ, ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ ¹è¿­
-	private int turnnum = 1; // °ÔÀÓ ÅÏ
-
-	public void startpage()
-	{
-		StartBackground sbg = new StartBackground();
-		NameField nf = new NameField();
-		StartButton sb = new StartButton();
-	}
-
-	public void turndice() // 1~6±îÁö Áßº¹¾øÀÌ 3°³ °ª ÃßÃâÇÏ¿© ¹è¿­¿¡ ³Ö±â
-	{
-		int num = 0;
-		boolean result = true;
-
-		for(int i=0;i<3;i++)
-		{
-			num = (int)(Math.random()*6+1);
-
-			for(int j=0;j<=i;j++)
-			{
-				if(dicenum[j] == num)
-				{
-					i = i-1;
-					result = false;
-					break;
-				}
-			}
-
-			if(result)
-				dicenum[i] = num;
-			else
-				result = true;
-		}
-	}
-
-	public void diceimage()
-	{
-		ImageIcon d_2 = new ImageIcon("img/dice_2.png");
-		ImageIcon d_1 = new ImageIcon("img/dice_1.png");
-		ImageIcon d = new ImageIcon("img/dice.png");
-		ImageIcon d1 = new ImageIcon("img/dice1.png");
-		ImageIcon d2 = new ImageIcon("img/dice2.png");
-		ImageIcon d3 = new ImageIcon("img/dice3.png");
-
-		for(int i=0;i<3;i++) 
-		{
-			switch(dicenum[i])
-			{
-			case 1:
-				Dice.d[i].setIcon(d_2); // ÁÖ»çÀ§ -2
-				break;
-			case 2:
-				Dice.d[i].setIcon(d_1); // ÁÖ»çÀ§ -1
-				break;
-			case 3:
-				Dice.d[i].setIcon(d); // ÁÖ»çÀ§ 0
-				break;
-			case 4:
-				Dice.d[i].setIcon(d1); // ÁÖ»çÀ§ 1
-				break;
-			case 5:
-				Dice.d[i].setIcon(d2); // ÁÖ»çÀ§ 2
-				break;
-			case 6:
-				Dice.d[i].setIcon(d3); // ÁÖ»çÀ§ 3
-				break;
-			}
-		}
-	}
-
-	public void sortdice()
-	{
-		int tmp = 0;
-
-		System.arraycopy(dicenum, 0, dicenum_copy, 0, 3);
-
-		for(int i=0;i<3;i++)
-		{
-			for(int j=i+1;j<3;j++)
-			{
-				if(dicenum_copy[i] < dicenum_copy[j])
-				{
-					tmp = dicenum_copy[i];
-					dicenum_copy[i] = dicenum_copy[j];
-					dicenum_copy[j] = tmp;
-				}
-			}
-		}
-	}
-
-	public void rank() // µÎ ¹è¿­À» ºñ±³ÇÏ¿©, °°Àº °ªÀ» °¡Áú ¶§ÀÇ ÀÎµ¦½º¸¦ ÃßÃâ
-	{
-		int index = 0;
-
-		for(int i=0;i<3;i++)
-		{
-			for(int j=0;j<3;j++)
-			{
-				if(dicenum_copy[i] == dicenum[j])
-				{
-					ranking[index] = j;
-					index++;
-					break;
-				}
-			}
-		}
-	}
-
-	public void mainpage()
-	{		
-		MainBackground mb = new MainBackground();
-		PTurn tl = new PTurn();
-		PName pn = new PName();
-		PMoney pm = new PMoney();
-		PGround pg = new PGround();
-		PFlag pf = new PFlag();
-		PDice pd = new PDice();
-		SpinButton sb = new SpinButton();
-		PFlagmove pfm = new PFlagmove();
-		PBorder pb = new PBorder();
-		PBankruptcy pbr = new PBankruptcy();
-
-		turnsetting(); // ÅÏ¿¡ ¸Â°Ô ÃÊ·ÏºÒ
-		moneysetting(); // µ· ¼¼ÆÃ
-		groundsetting(); // ±¸Àå Ä«µå ¼¼ÆÃ
-	}
-
-	public void turnsetting()
-	{
-		ImageIcon c = new ImageIcon("img/clear.png");
-		ImageIcon tl = new ImageIcon("img/turnlight.png");
-
-		for(int i=0;i<3;i++)
-		{
-			PTurn.pturn[i].setIcon(c); // ºÒÀ» ¸ğµÎ ÃÊ±âÈ­
-		}
-
-		if(turnnum > 3)
-			turnnum -= 3;
-
-		if(MarbleGame.p[turnnum-1].getStatus() == 0) // ÆÄ»êÀÎ ÇÃ·¹ÀÌ¾î°¡ ÀÖ´Ù¸é ÅÏ ³Ñ¾î°¡±â
-			turnnum++;
-
-		if(turnnum > 3)
-			turnnum -= 3;
-
-		PTurn.pturn[turnnum-1].setIcon(tl); // ÅÏ¿¡ ¸ÂÃç ºÒ ÄÑ±â
-	}
-
-	public void moneysetting()
-	{
-		for(int i=0;i<3;i++)
-		{
-			String str = String.format("%,d", MarbleGame.p[i].getMoney());
-			PMoney.pmoney[i].setText(str);
-		}
-	}
-
-	public void groundsetting()
-	{
-		ImageIcon cd = new ImageIcon("img/card.png");
-		ImageIcon cd1 = new ImageIcon("img/card1.png");
-		ImageIcon cd2 = new ImageIcon("img/card2.png");
-		ImageIcon cd4 = new ImageIcon("img/card4.png");
-		ImageIcon cd5 = new ImageIcon("img/card5.png");
-		ImageIcon cd7 = new ImageIcon("img/card7.png");
-		ImageIcon cd8 = new ImageIcon("img/card8.png");
-		ImageIcon cd10 = new ImageIcon("img/card10.png");
-		ImageIcon cd11 = new ImageIcon("img/card11.png");
-
-		int tmp = 0;
-
-		for(int i=0;i<3;i++) // ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
-		{
-			for(int j=0;j<2;j++)
-			{
-				if(MarbleGame.pst[i][j] < MarbleGame.pst[i][j+1])
-				{
-					tmp = MarbleGame.pst[i][j];
-					MarbleGame.pst[i][j] = MarbleGame.pst[i][j+1];
-					MarbleGame.pst[i][j+1] = tmp;
-				}
-			}
-
-			if(MarbleGame.pst[i][0] < MarbleGame.pst[i][1])
-			{
-				tmp = MarbleGame.pst[i][0];
-				MarbleGame.pst[i][0] = MarbleGame.pst[i][1];
-				MarbleGame.pst[i][1] = tmp;
-			}
-		}
-
-		for(int i=0;i<3;i++)
-		{
-			for(int j=0;j<3;j++)
-			{
-
-				switch(MarbleGame.pst[i][j])
-				{
-				case 0:
-					PGround.pground[i][j].setIcon(cd);
-					break;
-				case 1:
-					PGround.pground[i][j].setIcon(cd1);
-					break;
-				case 2:
-					PGround.pground[i][j].setIcon(cd2);
-					break;
-				case 4:
-					PGround.pground[i][j].setIcon(cd4);
-					break;
-				case 5:
-					PGround.pground[i][j].setIcon(cd5);
-					break;
-				case 7:
-					PGround.pground[i][j].setIcon(cd7);
-					break;
-				case 8:
-					PGround.pground[i][j].setIcon(cd8);
-					break;
-				case 10:
-					PGround.pground[i][j].setIcon(cd10);
-					break;
-				case 11:
-					PGround.pground[i][j].setIcon(cd11);
-					break;
-				}
-			}
-		}
-	}
-
-	public void spindice() // 1~6±îÁö Áßº¹¾øÀÌ 2°³ °ª ÃßÃâÇÏ¿© ¹è¿­¿¡ ³Ö±â
-	{
-		int num = 0;
-		boolean result = true;
-
-		for(int i=0;i<2;i++)
-		{
-			num = (int)(Math.random()*6+1);
-
-			for(int j=0;j<=i;j++)
-			{
-				if(pdicenum[j] == num)
-				{
-					i = i-1;
-					result = false;
-					break;
-				}
-			}
-
-			if(result)
-				pdicenum[i] = num;
-			else
-				result = true;
-		}
-	}
-
-	public void pdiceimage()
-	{
-		ImageIcon d_2 = new ImageIcon("img/dice_2.png");
-		ImageIcon d_1 = new ImageIcon("img/dice_1.png");
-		ImageIcon d = new ImageIcon("img/dice.png");
-		ImageIcon d1 = new ImageIcon("img/dice1.png");
-		ImageIcon d2 = new ImageIcon("img/dice2.png");
-		ImageIcon d3 = new ImageIcon("img/dice3.png");
-
-		for(int i=0;i<2;i++) 
-		{
-			switch(pdicenum[i])
-			{
-			case 1:
-				PDice.pdice[i].setIcon(d_2); // ÁÖ»çÀ§ -2
-				break;
-			case 2:
-				PDice.pdice[i].setIcon(d_1); // ÁÖ»çÀ§ -1
-				break;
-			case 3:
-				PDice.pdice[i].setIcon(d); // ÁÖ»çÀ§ 0
-				break;
-			case 4:
-				PDice.pdice[i].setIcon(d1); // ÁÖ»çÀ§ 1
-				break;
-			case 5:
-				PDice.pdice[i].setIcon(d2); // ÁÖ»çÀ§ 2
-				break;
-			case 6:
-				PDice.pdice[i].setIcon(d3); // ÁÖ»çÀ§ 3
-				break;
-			}
-		}
-	}
-
-	public void game()
-	{
-		pnum = turncheck(); // °ÔÀÓ ÁßÀÎ ÇÃ·¹ÀÌ¾î ¾Ë·ÁÁÖ±â
-		int dnum = MarbleGame.p[pnum].getPosition() + pdicenum[0] + pdicenum[1] - 6; // ÇöÀç À§Ä¡¿¡¼­ ÁÖ»çÀ§ °ªÀ» ÇÕÄ£ °á°ú
-
-		startIndex = MarbleGame.p[pnum].getPosition();
-		endIndex = dnum;
-
-		if(MarbleGame.p[pnum].getBlack()==1 && MarbleGame.p[pnum].getStatus()==1) // ºí·¢È¦¿¡ ºüÁö°Å³ª ÆÄ»êÀÎ °æ¿ì°¡ ¾Æ´Ñ Á¤»óÀûÀÎ ÇÃ·¹ÀÌ
-		{
-			posicheck(dnum); // ÀÌµ¿ÇÒ À§Ä¡ Ã¼Å©
-
-			horsemove(); // ¸» ÀÌµ¿
-
-			stadiumcheck(); // µµÂøÇÑ À§Ä¡¿¡ µû¶ó, ¿©·¯ »óÈ² ¹ß»ı
-
-			sumproperty(); // ÇÃ·¹ÀÌ¾î ÃÑ Àç»ê °è»ê
-		}
-		else
-			if(MarbleGame.p[pnum].getBlack() == 0) // ºí·¢È¦¿¡¼­ 1ÅÏ ½¬±â
-			{
-				MarbleGame.p[pnum].setBlack(1);
-
-				JOptionPane.showMessageDialog(MarbleGame.jlp, "´ÙÀ½ ÅÏºÎÅÍ Âü¿© °¡´ÉÇÕ´Ï´Ù.", "»óÅÂÃ¢", JOptionPane.ERROR_MESSAGE);
-			}
-
-		turnsetting(); // ÅÏ¿¡ ¸Â°Ô ÃÊ·ÏºÒ
-		
-		
-	}
-
-	public int turncheck()
-	{
-		int num = 0;
-
-		for(int i=0;i<3;i++)
-		{
-			if(turnnum == MarbleGame.p[i].getTurn())
-			{
-				num = i;
-				break;
-			}
-		}
-
-		turnnum++;
-
-		return num;
-	}
-
-	public void posicheck(int dnum)
-	{	
-		ImageIcon c = new ImageIcon("img/clear.png");
-
-		PFlag.pflag[pnum][MarbleGame.p[pnum].getPosition()].setIcon(c); // ÇöÀç À§Ä¡ ¸» °¡¸®±â
-
-		if(MarbleGame.p[pnum].getRound() == 0) // ¾ÆÁ÷ 1¹ÙÄûµµ ¾È µ¹¾ÒÀ» ¶§
-		{
-			if(dnum <= 0) // 0 ÀÌÇÏ ¼ıÀÚ°¡ ³ª¿À¸é ¿òÁ÷ÀÌÁö ¾Ê´Â´Ù.
-				MarbleGame.p[pnum].setPosition(0);
-			else
-				if(dnum > 11)
-				{
-					dnum -= 12; // ÇÑ ¹ÙÄû¸¦ ³Ñ¾î°¥ °æ¿ì
-					MarbleGame.p[pnum].setRound(MarbleGame.p[pnum].getRound()+1); // ¶ó¿îµå Ãß°¡
-					MarbleGame.p[pnum].setPosition(dnum);
-					
-					if(MarbleGame.p[pnum].getRound() == 2) // ´©±º°¡ 2¹ÙÄû¿¡ ¸ÕÀú µµ´ŞÇÏ¸é, °ÔÀÓ Á¾·á
-					{
-						gameover();
-						return;
-					}
-					
-					SalaryPopup sp = new SalaryPopup(); // ÇÑ ¹ÙÄû°¡ Ãß°¡µÇ¸é, °ü¶÷·á Áö±Ş ÆË¾÷
-				}
-				else
-					MarbleGame.p[pnum].setPosition(dnum);
-		}
-		else
-			if(dnum > 11)
-			{
-				dnum -= 12; // ÇÑ ¹ÙÄû¸¦ ³Ñ¾î°¥ °æ¿ì
-				MarbleGame.p[pnum].setRound(MarbleGame.p[pnum].getRound()+1); // ¶ó¿îµå Ãß°¡
-				MarbleGame.p[pnum].setPosition(dnum);
-				
-				if(MarbleGame.p[pnum].getRound() == 2) // ´©±º°¡ 2¹ÙÄû¿¡ ¸ÕÀú µµ´ŞÇÏ¸é, °ÔÀÓ Á¾·á
-				{
-					gameover();
-					return;
-				}
-				
-				SalaryPopup sp = new SalaryPopup(); // ÇÑ ¹ÙÄû°¡ Ãß°¡µÇ¸é, °ü¶÷·á Áö±Ş ÆË¾÷
-			}
-			else
-				if(dnum == 0) // Ãâ¹ßÁ¡ÀÎ °æ¿ì
-				{
-					MarbleGame.p[pnum].setRound(MarbleGame.p[pnum].getRound()+1); // ¶ó¿îµå Ãß°¡
-					MarbleGame.p[pnum].setPosition(dnum);
-					
-					if(MarbleGame.p[pnum].getRound() == 2) // ´©±º°¡ 2¹ÙÄû¿¡ ¸ÕÀú µµ´ŞÇÏ¸é, °ÔÀÓ Á¾·á
-					{
-						gameover();
-						return;
-					}
-					
-					SalaryPopup sp = new SalaryPopup(); // ÇÑ ¹ÙÄû°¡ Ãß°¡µÇ¸é, °ü¶÷·á Áö±Ş ÆË¾÷
-				}
-				else
-					if(dnum < 0)
-					{
-						dnum += 12; // µÚ·Î °¥ °æ¿ì
-						MarbleGame.p[pnum].setPosition(dnum);
-					}
-					else
-						MarbleGame.p[pnum].setPosition(dnum);
-	}
-
-	public void horsemove()
-	{
-		posi = MarbleGame.p[pnum].getPosition();
-
-		if(pnum == 0)
-		{
-			PFlag.pflag[0][posi].setIcon(y);
-			PFlagmove.pflagmove.setIcon(y);
-		}
-		else
-			if(pnum == 1)
-			{
-				PFlag.pflag[1][posi].setIcon(b);
-				PFlagmove.pflagmove.setIcon(b);
-			}
-			else 
-				if(pnum == 2)
-				{
-					PFlag.pflag[2][posi].setIcon(g);
-					PFlagmove.pflagmove.setIcon(g);
-				}
-
-		(new FlagThread()).start();
-	}
-
-	public static void gameover()
-	{
-		FinalBackground fb = new FinalBackground();
-		PRank pr = new PRank();
-
-		finalrank[2] = pnum; // 2¹ÙÄû¿¡ µµ´ŞÇÑ ¶Ç´Â ÆÄ»êÇÏÁö ¾ÊÀº ÇöÀç ÇÃ·¹ÀÌ¾î°¡ 1µî
-
-		if(personcount == 0) // ÆÄ»êÇÑ »ç¶÷ ¾øÀÌ, ´©±º°¡ 2¹ÙÄû¿¡ ¸ÕÀú µµ´ŞÇÑ °æ¿ì
-		{
-			int[] sort = new int[2];
-			int index = 0;
-
-			finalrank[2] = pnum; // 2¹ÙÄû¿¡ µµ´ŞÇÑ ÇöÀç ÇÃ·¹ÀÌ¾î°¡ 1µî
-
-			// 1µî ÇÃ·¹ÀÌ¾î Á¦¿ÜÇÑ ´Ù¸¥ ÇÃ·¹ÀÌ¾î ÀÎµ¦½º ÃßÃâ
-			for(int i=0;i<3;i++)
-			{
-				if(i != pnum)
-				{
-					sort[index] = i;
-					index++;
-				}
-			}
-
-			// ÀüÀç»êÀÌ ¸¹Àº ¼ø´ë·Î Á¤·Ä
-			// -> ¸¸¾à ÀüÀç»êÀÌ °°´Ù¸é, ÇÃ·¹ÀÌ¾î ÅÏ ¼ø¼­°¡ ºü¸¦¼ö·Ï ´õ ³ôÀº ¿ìÀ§¸¦ °¡Áü
-			if(MarbleGame.p[sort[0]].getProperty() >= MarbleGame.p[sort[1]].getProperty())
-			{
-				int tmp = sort[0];
-				sort[0] = sort[1];
-				sort[1] = tmp;
-			}
-
-			// ÃÖÁ¾ ·©Å· ¹è¿­¿¡ ³Ö±â
-			for(int i=1;i>=0;i--)
-			{
-				finalrank[i] = sort[i];
-			}
-		}
-		else
-			if(personcount == 1) // ÆÄ»êÇÑ »ç¶÷ 1¸í, ³ª¸ÓÁö 2¸í Áß¿¡¼­ 2¹ÙÄû¿¡ ´©±º°¡ µµ´ŞÇÑ °æ¿ì
-			{
-				finalrank[2] = pnum; // 2¹ÙÄû¿¡ µµ´ŞÇÑ ÇöÀç ÇÃ·¹ÀÌ¾î°¡ 1µî
-
-				// ÆÄ»ê 1¸í, 1µî ÇÃ·¹ÀÌ¾î Á¦¿ÜÇÑ ´Ù¸¥ ÇÃ·¹ÀÌ¾î ÀÎµ¦½º ÃßÃâ
-				for(int i=0;i<3;i++)
-				{
-					if(i!=pnum && i!=finalrank[0])
-					{
-						finalrank[1] = i;
-						break;
-					}
-				}
-			}
-			else
-				if(personcount == 2) // ÆÄ»êÇÑ »ç¶÷ 2¸í
-				{
-					// ÆÄ»ê 2¸íÀ» Á¦¿ÜÇÑ 1µî ÇÃ·¹ÀÌ¾î ÀÎµ¦½º ÃßÃâ
-					for(int i=0;i<3;i++)
-					{
-						if(i!=finalrank[0] && i!=finalrank[1])
-						{
-							finalrank[2] = i;
-							break;
-						}
-					}
-				}
-
-		// ¿ª¼øÀ¸·Î ¼øÀ§ Ãâ·Â
-		for(int i=2;i>=0;i--)
-		{
-			pr.prank[i].setText(MarbleGame.p[finalrank[i]].getName());
-		}
-	}
-
-	public void stadiumcheck()
-	{
-		if(MarbleGame.st[posi].getOwnerCheck()==0 && posi!=0)
-		{
-			BuyPopup bp = new BuyPopup(); // ±¸Àå ±¸¸ÅÇÏ±â ÆË¾÷
-		}
-		else
-			if(posi==3 || posi==9)
-			{
-				SoccerGame sc = new SoccerGame(); // Ãà±¸ °ÔÀÓ ½ÇÇà
-			}
-			else
-				if(posi == 6)
-				{
-					MarbleGame.p[pnum].setBlack(0); // ¹âÀ¸¸é »óÅÂ 0À¸·Î ¸¸µé±â
-
-					BholePopup bp = new BholePopup(); // ºí·¢È¦ ÀÔÀå ÆË¾÷
-				}
-				else
-					if(MarbleGame.st[posi].getOwner()!=pnum && posi!=0)
-					{
-						TollPopup tp = new TollPopup(); // ±¸Àå ÅëÇà·á ¹× ÀÎ¼öÇÏ±â ÆË¾÷
-					}
-	}
-
-	public void border()
-	{
-		ImageIcon yb = new ImageIcon("img/yellow_border.png");
-		ImageIcon yb2 = new ImageIcon("img/yellow_border2.png");
-		ImageIcon bb = new ImageIcon("img/blue_border.png");
-		ImageIcon bb2 = new ImageIcon("img/blue_border2.png");
-		ImageIcon gb = new ImageIcon("img/green_border.png");
-		ImageIcon gb2 = new ImageIcon("img/green_border2.png");
-
-		if(pnum == 0)
-		{
-			switch(MarbleGame.p[pnum].getPosition()) 
-			{
-			case 1 : case 2 : case 7 : case 8 :
-				PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(yb);
-				break;
-			case 4 : case 5 : case 10 : case 11 :
-				PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(yb2);
-				break;
-			}
-		}
-		else
-			if(pnum == 1)
-			{
-				switch(MarbleGame.p[pnum].getPosition()) 
-				{
-				case 1 : case 2 : case 7 : case 8 :
-					PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(bb);
-					break;
-				case 4 : case 5 : case 10 : case 11 :
-					PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(bb2);
-					break;
-				}
-			}
-			else
-				if(pnum == 2)
-				{
-					switch(MarbleGame.p[pnum].getPosition()) 
-					{
-					case 1 : case 2 : case 7 : case 8 :
-						PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(gb);
-						break;
-					case 4 : case 5 : case 10 : case 11 :
-						PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(gb2);
-						break;
-					}
-				}
-	}
-
-	public void nonborder(int num)
-	{
-		ImageIcon c = new ImageIcon("img/clear.png");
-
-		PBorder.pborder[num].setIcon(c);
-	}
-
-	public void sumproperty()
-	{
-		int property = 0;
-
-		// Àü Àç»ê ±¸ÇÏ±â
-		for(int i=0;i<3;i++)
-		{
-			property += MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice();
-		}
-		property += MarbleGame.p[MarbleManager.pnum].getMoney();
-
-		MarbleGame.p[pnum].setProperty(property);
-	}
+   public static int[] ranking = new int[3]; // ìˆœì„œ ì¸ë±ìŠ¤ ê°’ì´ ì €ì¥ëœ ë°°ì—´
+   public static int pnum = 0; // ê²Œì„ ì¤‘ì¸ í”Œë ˆì´ì–´ ë²ˆí˜¸
+   public static int posi = 0; // í˜„ì¬ ìœ„ì¹˜
+   public static int personcount = 0; // íŒŒì‚°ì¸ ì‚¬ëŒ ìˆ˜
+   public static int[] finalrank = new int[3]; // ìµœì¢… ë­í‚¹ì— ì“°ì¼ ì—­ìˆœ ë°°ì—´
+
+   static int[] pdicenum = new int[1];  // ê²Œì„ ì£¼ì‚¬ìœ„ ëŒë¦° ê°’ì´ ì €ì¥ëœ ë°°ì—´
+   static int startIndex;
+   static int endIndex;
+   static int moveIndex;
+
+   private ImageIcon y = new ImageIcon("img/yellow.png");
+   private ImageIcon b = new ImageIcon("img/blue.png");
+   private ImageIcon g = new ImageIcon("img/green.png");
+   private int[] dicenum = new int[3]; // ìˆœì„œ ì •í•˜ëŠ” ì£¼ì‚¬ìœ„ ëŒë¦° ê°’ì´ ì €ì¥ëœ ë°°ì—´
+   private int[] dicenum_copy = new int[3]; // ì£¼ì‚¬ìœ„ ëŒë¦° ê°’ì„ ë³µì‚¬ ë°›ì•„, ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œ ë°°ì—´
+   private int turnnum = 1; // ê²Œì„ í„´
+
+   public void startpage()
+   {
+      StartBackground sbg = new StartBackground();
+      NameField nf = new NameField();
+      StartButton sb = new StartButton();
+   }
+
+   public void turndice() // 1~6ê¹Œì§€ ì¤‘ë³µì—†ì´ 3ê°œ ê°’ ì¶”ì¶œí•˜ì—¬ ë°°ì—´ì— ë„£ê¸°
+   {
+      int num = 0;
+      boolean result = true;
+
+      for(int i=0;i<3;i++)
+      {
+         num = (int)(Math.random()*3+1);
+
+         for(int j=0;j<=i;j++)
+         {
+            if(dicenum[j] == num)
+            {
+               i = i-1;
+               result = false;
+               break;
+            }
+         }
+
+         if(result)
+            dicenum[i] = num;
+         else
+            result = true;
+      } //ì´ìƒˆë¼ ìˆœì„œ ë‹¤ì´ìŠ¤ ì‹œë°œì•„
+   }
+
+   public void diceimage()
+   {
+      /*ImageIcon d_2 = new ImageIcon("img/dice_2.png");
+      ImageIcon d_1 = new ImageIcon("img/dice_1.png");
+      ImageIcon d = new ImageIcon("img/dice.png"); */
+      ImageIcon d1 = new ImageIcon("img/dice1.png");
+      ImageIcon d2 = new ImageIcon("img/dice2.png");
+      ImageIcon d3 = new ImageIcon("img/dice3.png");
+
+      for(int i=0;i<3;i++) 
+      {
+         switch(dicenum[i])
+         {
+         /*case 1:
+            Dice.d[i].setIcon(d_2); // ì£¼ì‚¬ìœ„ -2
+            break;
+         case 2:
+            Dice.d[i].setIcon(d_1); // ì£¼ì‚¬ìœ„ -1
+            break;
+         case 3:
+            Dice.d[i].setIcon(d); // ì£¼ì‚¬ìœ„ 0
+            break;*/
+         case 1:
+            Dice.d[i].setIcon(d1); // ì£¼ì‚¬ìœ„ 1
+            break;
+         case 2:
+            Dice.d[i].setIcon(d2); // ì£¼ì‚¬ìœ„ 2
+            break;
+         case 3:
+            Dice.d[i].setIcon(d3); // ì£¼ì‚¬ìœ„ 3
+            break;
+         }
+      } //ì–´ ì´ìƒˆë¼ ìˆœì„œ ë‹¤ì´ìŠ¤
+   }
+
+   public void sortdice()
+   {
+      int tmp = 0;
+
+      System.arraycopy(dicenum, 0, dicenum_copy, 0, 3);
+
+      for(int i=0;i<3;i++)
+      {
+         for(int j=i+1;j<3;j++)
+         {
+            if(dicenum_copy[i] < dicenum_copy[j])
+            {
+               tmp = dicenum_copy[i];
+               dicenum_copy[i] = dicenum_copy[j];
+               dicenum_copy[j] = tmp;
+            }
+         }
+      }
+   } //ì´ ìƒˆë¼ë„ ë­ ê²°êµ­ì€ ìˆœì„œ ë‹¤ì´ìŠ¤?
+
+   public void rank() // ë‘ ë°°ì—´ì„ ë¹„êµí•˜ì—¬, ê°™ì€ ê°’ì„ ê°€ì§ˆ ë•Œì˜ ì¸ë±ìŠ¤ë¥¼ ì¶”ì¶œ
+   {
+      int index = 0;
+
+      for(int i=0;i<3;i++)
+      {
+         for(int j=0;j<3;j++)
+         {
+            if(dicenum_copy[i] == dicenum[j])
+            {
+               ranking[index] = j;
+               index++;
+               break;
+            }
+         } //ê·¸ë˜ ìˆœì„œ ì •í• ë•Œ ê°™ì€ ê°’ ê°€ì§€ë©´ ì•ˆë˜ì§€ã…‹ã…‹
+      }
+   }
+
+   public void mainpage()
+   {      
+      MainBackground mb = new MainBackground();
+      PTurn tl = new PTurn();
+      PName pn = new PName();
+      PMoney pm = new PMoney();
+      PGround pg = new PGround();
+      PFlag pf = new PFlag();
+      PDice pd = new PDice();
+      SpinButton sb = new SpinButton();
+      PFlagmove pfm = new PFlagmove();
+      PBorder pb = new PBorder();
+      PBankruptcy pbr = new PBankruptcy();
+
+      turnsetting(); // í„´ì— ë§ê²Œ ì´ˆë¡ë¶ˆ
+      moneysetting(); // ëˆ ì„¸íŒ…
+      groundsetting(); // êµ¬ì¥ ì¹´ë“œ ì„¸íŒ…
+   }
+
+   public void turnsetting()
+   {
+      ImageIcon c = new ImageIcon("img/clear.png");
+      ImageIcon tl = new ImageIcon("img/turnlight.png");
+
+      for(int i=0;i<3;i++)
+      {
+         PTurn.pturn[i].setIcon(c); // ë¶ˆì„ ëª¨ë‘ ì´ˆê¸°í™”
+      }
+
+      if(turnnum > 3)
+         turnnum -= 3;
+
+      if(MarbleGame.p[turnnum-1].getStatus() == 0) // íŒŒì‚°ì¸ í”Œë ˆì´ì–´ê°€ ìˆë‹¤ë©´ í„´ ë„˜ì–´ê°€ê¸°
+         turnnum++;
+
+      if(turnnum > 3)
+         turnnum -= 3;
+
+      PTurn.pturn[turnnum-1].setIcon(tl); // í„´ì— ë§ì¶° ë¶ˆ ì¼œê¸°
+   }
+
+   public void moneysetting()
+   {
+      for(int i=0;i<3;i++)
+      {
+         String str = String.format("%,d", MarbleGame.p[i].getMoney());
+         PMoney.pmoney[i].setText(str);
+      }
+   }
+
+   public void groundsetting()
+   {
+      ImageIcon cd = new ImageIcon("img/card.png");
+      ImageIcon cd1 = new ImageIcon("img/card1.png");
+      ImageIcon cd2 = new ImageIcon("img/card2.png");
+      ImageIcon cd4 = new ImageIcon("img/card4.png");
+      ImageIcon cd5 = new ImageIcon("img/card5.png");
+      ImageIcon cd7 = new ImageIcon("img/card7.png");
+      ImageIcon cd8 = new ImageIcon("img/card8.png");
+      ImageIcon cd10 = new ImageIcon("img/card10.png");
+      ImageIcon cd11 = new ImageIcon("img/card11.png");
+
+      int tmp = 0;
+
+      for(int i=0;i<3;i++) // ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
+      {
+         for(int j=0;j<2;j++)
+         {
+            if(MarbleGame.pst[i][j] < MarbleGame.pst[i][j+1])
+            {
+               tmp = MarbleGame.pst[i][j];
+               MarbleGame.pst[i][j] = MarbleGame.pst[i][j+1];
+               MarbleGame.pst[i][j+1] = tmp;
+            }
+         }
+
+         if(MarbleGame.pst[i][0] < MarbleGame.pst[i][1])
+         {
+            tmp = MarbleGame.pst[i][0];
+            MarbleGame.pst[i][0] = MarbleGame.pst[i][1];
+            MarbleGame.pst[i][1] = tmp;
+         }
+      }
+
+      for(int i=0;i<3;i++)
+      {
+         for(int j=0;j<3;j++)
+         {
+
+            switch(MarbleGame.pst[i][j])
+            {
+            case 0:
+               PGround.pground[i][j].setIcon(cd);
+               break;
+            case 1:
+               PGround.pground[i][j].setIcon(cd1);
+               break;
+            case 2:
+               PGround.pground[i][j].setIcon(cd2);
+               break;
+            case 4:
+               PGround.pground[i][j].setIcon(cd4);
+               break;
+            case 5:
+               PGround.pground[i][j].setIcon(cd5);
+               break;
+            case 7:
+               PGround.pground[i][j].setIcon(cd7);
+               break;
+            case 8:
+               PGround.pground[i][j].setIcon(cd8);
+               break;
+            case 10:
+               PGround.pground[i][j].setIcon(cd10);
+               break;
+            case 11:
+               PGround.pground[i][j].setIcon(cd11);
+               break;
+            }
+         }
+      }
+   }
+
+   public void spindice() // 1~6ê¹Œì§€ ì¤‘ë³µì—†ì´ 2ê°œ ê°’ ì¶”ì¶œí•˜ì—¬ ë°°ì—´ì— ë„£ê¸°
+   {
+      int num = 0;
+      boolean result = true;
+
+      for(int i=0;i<1;i++)
+      {
+         num = (int)(Math.random()*3+1);
+
+         for(int j=0;j<=i;j++)
+         {
+            if(pdicenum[j] == num)
+            {
+               i = i-1;
+               result = false;
+               break;
+            }
+         }
+
+         if(result)
+            pdicenum[i] = num;
+         else
+            result = true;
+      }
+   } //ì–´ ã…‡ã…‹ ëŒë¦¬ëŠ” ì£¼ì‚¬ìœ„ ã…‡ã…‹
+
+   public void pdiceimage()
+   {
+      /*ImageIcon d_2 = new ImageIcon("img/dice_2.png");
+      ImageIcon d_1 = new ImageIcon("img/dice_1.png");
+      ImageIcon d = new ImageIcon("img/dice.png");*/
+      ImageIcon d1 = new ImageIcon("img/dice1.png");
+      ImageIcon d2 = new ImageIcon("img/dice2.png");
+      ImageIcon d3 = new ImageIcon("img/dice3.png");
+
+      for(int i=0;i<1;i++) 
+      {
+         switch(pdicenum[i])
+         {
+         /*case 1:
+            PDice.pdice[i].setIcon(d_2); // ì£¼ì‚¬ìœ„ -2
+            break;
+         case 2:
+            PDice.pdice[i].setIcon(d_1); // ì£¼ì‚¬ìœ„ -1
+            break;
+         case 3:
+            PDice.pdice[i].setIcon(d); // ì£¼ì‚¬ìœ„ 0
+            break;*/
+         case 1:
+            PDice.pdice[i].setIcon(d1); // ì£¼ì‚¬ìœ„ 1
+            break;
+         case 2:
+            PDice.pdice[i].setIcon(d2); // ì£¼ì‚¬ìœ„ 2
+            break;
+         case 3:
+            PDice.pdice[i].setIcon(d3); // ì£¼ì‚¬ìœ„ 3
+            break;
+         }
+      }
+   }
+
+   public void game()
+   {
+      pnum = turncheck(); // ê²Œì„ ì¤‘ì¸ í”Œë ˆì´ì–´ ì•Œë ¤ì£¼ê¸°
+      int dnum = MarbleGame.p[pnum].getPosition() + pdicenum[0]; //+ pdicenum[1] - 6; // í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì£¼ì‚¬ìœ„ ê°’ì„ í•©ì¹œ ê²°ê³¼
+
+      startIndex = MarbleGame.p[pnum].getPosition();
+      endIndex = dnum;
+
+      if(MarbleGame.p[pnum].getBlack()==1 && MarbleGame.p[pnum].getStatus()==1) // ë¸”ë™í™€ì— ë¹ ì§€ê±°ë‚˜ íŒŒì‚°ì¸ ê²½ìš°ê°€ ì•„ë‹Œ ì •ìƒì ì¸ í”Œë ˆì´
+      {
+         posicheck(dnum); // ì´ë™í•  ìœ„ì¹˜ ì²´í¬
+
+         horsemove(); // ë§ ì´ë™
+
+         stadiumcheck(); // ë„ì°©í•œ ìœ„ì¹˜ì— ë”°ë¼, ì—¬ëŸ¬ ìƒí™© ë°œìƒ
+
+         sumproperty(); // í”Œë ˆì´ì–´ ì´ ì¬ì‚° ê³„ì‚°
+      }
+      else
+         if(MarbleGame.p[pnum].getBlack() == 0) // ë¸”ë™í™€ì—ì„œ 1í„´ ì‰¬ê¸°
+         {
+            MarbleGame.p[pnum].setBlack(1);
+
+            JOptionPane.showMessageDialog(MarbleGame.jlp, "ë‹¤ìŒ í„´ë¶€í„° ì°¸ì—¬ ê°€ëŠ¥í•©ë‹ˆë‹¤.", "ìƒíƒœì°½", JOptionPane.ERROR_MESSAGE);
+         }
+
+      turnsetting(); // í„´ì— ë§ê²Œ ì´ˆë¡ë¶ˆ
+      
+      
+   }
+
+   public int turncheck()
+   {
+      int num = 0;
+
+      for(int i=0;i<3;i++)
+      {
+         if(turnnum == MarbleGame.p[i].getTurn())
+         {
+            num = i;
+            break;
+         }
+      }
+
+      turnnum++;
+
+      return num;
+   }
+
+   public void posicheck(int dnum)
+   {   
+      ImageIcon c = new ImageIcon("img/clear.png");
+
+      PFlag.pflag[pnum][MarbleGame.p[pnum].getPosition()].setIcon(c); // í˜„ì¬ ìœ„ì¹˜ ë§ ê°€ë¦¬ê¸°
+
+      if(MarbleGame.p[pnum].getRound() == 0) // ì•„ì§ 1ë°”í€´ë„ ì•ˆ ëŒì•˜ì„ ë•Œ
+      {
+         if(dnum <= 0) // 0 ì´í•˜ ìˆ«ìê°€ ë‚˜ì˜¤ë©´ ì›€ì§ì´ì§€ ì•ŠëŠ”ë‹¤.
+            MarbleGame.p[pnum].setPosition(0);
+         else
+            if(dnum > 11)
+            {
+               dnum -= 12; // í•œ ë°”í€´ë¥¼ ë„˜ì–´ê°ˆ ê²½ìš°
+               MarbleGame.p[pnum].setRound(MarbleGame.p[pnum].getRound()+1); // ë¼ìš´ë“œ ì¶”ê°€
+               MarbleGame.p[pnum].setPosition(dnum);
+               
+               if(MarbleGame.p[pnum].getRound() == 2) // ëˆ„êµ°ê°€ 2ë°”í€´ì— ë¨¼ì € ë„ë‹¬í•˜ë©´, ê²Œì„ ì¢…ë£Œ
+               {
+                  gameover();
+                  return;
+               }
+               
+               SalaryPopup sp = new SalaryPopup(); // í•œ ë°”í€´ê°€ ì¶”ê°€ë˜ë©´, ê´€ëŒë£Œ ì§€ê¸‰ íŒì—…
+            }
+            else
+               MarbleGame.p[pnum].setPosition(dnum);
+      }
+      else
+         if(dnum > 11)
+         {
+            dnum -= 12; // í•œ ë°”í€´ë¥¼ ë„˜ì–´ê°ˆ ê²½ìš°
+            MarbleGame.p[pnum].setRound(MarbleGame.p[pnum].getRound()+1); // ë¼ìš´ë“œ ì¶”ê°€
+            MarbleGame.p[pnum].setPosition(dnum);
+            
+            if(MarbleGame.p[pnum].getRound() == 2) // ëˆ„êµ°ê°€ 2ë°”í€´ì— ë¨¼ì € ë„ë‹¬í•˜ë©´, ê²Œì„ ì¢…ë£Œ
+            {
+               gameover();
+               return;
+            }
+            
+            SalaryPopup sp = new SalaryPopup(); // í•œ ë°”í€´ê°€ ì¶”ê°€ë˜ë©´, ê´€ëŒë£Œ ì§€ê¸‰ íŒì—…
+         }
+         else
+            if(dnum == 0) // ì¶œë°œì ì¸ ê²½ìš°
+            {
+               MarbleGame.p[pnum].setRound(MarbleGame.p[pnum].getRound()+1); // ë¼ìš´ë“œ ì¶”ê°€
+               MarbleGame.p[pnum].setPosition(dnum);
+               
+               if(MarbleGame.p[pnum].getRound() == 2) // ëˆ„êµ°ê°€ 2ë°”í€´ì— ë¨¼ì € ë„ë‹¬í•˜ë©´, ê²Œì„ ì¢…ë£Œ
+               {
+                  gameover();
+                  return;
+               }
+               
+               SalaryPopup sp = new SalaryPopup(); // í•œ ë°”í€´ê°€ ì¶”ê°€ë˜ë©´, ê´€ëŒë£Œ ì§€ê¸‰ íŒì—…
+            }
+            else
+               if(dnum < 0)
+               {
+                  dnum += 12; // ë’¤ë¡œ ê°ˆ ê²½ìš°
+                  MarbleGame.p[pnum].setPosition(dnum);
+               }
+               else
+                  MarbleGame.p[pnum].setPosition(dnum);
+   }
+
+   public void horsemove()
+   {
+      posi = MarbleGame.p[pnum].getPosition();
+
+      if(pnum == 0)
+      {
+         PFlag.pflag[0][posi].setIcon(y);
+         PFlagmove.pflagmove.setIcon(y);
+      }
+      else
+         if(pnum == 1)
+         {
+            PFlag.pflag[1][posi].setIcon(b);
+            PFlagmove.pflagmove.setIcon(b);
+         }
+         else 
+            if(pnum == 2)
+            {
+               PFlag.pflag[2][posi].setIcon(g);
+               PFlagmove.pflagmove.setIcon(g);
+            }
+
+      (new FlagThread()).start();
+   }
+
+   public static void gameover()
+   {
+      FinalBackground fb = new FinalBackground();
+      PRank pr = new PRank();
+
+      finalrank[2] = pnum; // 2ë°”í€´ì— ë„ë‹¬í•œ ë˜ëŠ” íŒŒì‚°í•˜ì§€ ì•Šì€ í˜„ì¬ í”Œë ˆì´ì–´ê°€ 1ë“±
+
+      if(personcount == 0) // íŒŒì‚°í•œ ì‚¬ëŒ ì—†ì´, ëˆ„êµ°ê°€ 2ë°”í€´ì— ë¨¼ì € ë„ë‹¬í•œ ê²½ìš°
+      {
+         int[] sort = new int[2];
+         int index = 0;
+
+         finalrank[2] = pnum; // 2ë°”í€´ì— ë„ë‹¬í•œ í˜„ì¬ í”Œë ˆì´ì–´ê°€ 1ë“±
+
+         // 1ë“± í”Œë ˆì´ì–´ ì œì™¸í•œ ë‹¤ë¥¸ í”Œë ˆì´ì–´ ì¸ë±ìŠ¤ ì¶”ì¶œ
+         for(int i=0;i<3;i++)
+         {
+            if(i != pnum)
+            {
+               sort[index] = i;
+               index++;
+            }
+         }
+
+         // ì „ì¬ì‚°ì´ ë§ì€ ìˆœëŒ€ë¡œ ì •ë ¬
+         // -> ë§Œì•½ ì „ì¬ì‚°ì´ ê°™ë‹¤ë©´, í”Œë ˆì´ì–´ í„´ ìˆœì„œê°€ ë¹ ë¥¼ìˆ˜ë¡ ë” ë†’ì€ ìš°ìœ„ë¥¼ ê°€ì§
+         if(MarbleGame.p[sort[0]].getProperty() >= MarbleGame.p[sort[1]].getProperty())
+         {
+            int tmp = sort[0];
+            sort[0] = sort[1];
+            sort[1] = tmp;
+         }
+
+         // ìµœì¢… ë­í‚¹ ë°°ì—´ì— ë„£ê¸°
+         for(int i=1;i>=0;i--)
+         {
+            finalrank[i] = sort[i];
+         }
+      }
+      else
+         if(personcount == 1) // íŒŒì‚°í•œ ì‚¬ëŒ 1ëª…, ë‚˜ë¨¸ì§€ 2ëª… ì¤‘ì—ì„œ 2ë°”í€´ì— ëˆ„êµ°ê°€ ë„ë‹¬í•œ ê²½ìš°
+         {
+            finalrank[2] = pnum; // 2ë°”í€´ì— ë„ë‹¬í•œ í˜„ì¬ í”Œë ˆì´ì–´ê°€ 1ë“±
+
+            // íŒŒì‚° 1ëª…, 1ë“± í”Œë ˆì´ì–´ ì œì™¸í•œ ë‹¤ë¥¸ í”Œë ˆì´ì–´ ì¸ë±ìŠ¤ ì¶”ì¶œ
+            for(int i=0;i<3;i++)
+            {
+               if(i!=pnum && i!=finalrank[0])
+               {
+                  finalrank[1] = i;
+                  break;
+               }
+            }
+         }
+         else
+            if(personcount == 2) // íŒŒì‚°í•œ ì‚¬ëŒ 2ëª…
+            {
+               // íŒŒì‚° 2ëª…ì„ ì œì™¸í•œ 1ë“± í”Œë ˆì´ì–´ ì¸ë±ìŠ¤ ì¶”ì¶œ
+               for(int i=0;i<3;i++)
+               {
+                  if(i!=finalrank[0] && i!=finalrank[1])
+                  {
+                     finalrank[2] = i;
+                     break;
+                  }
+               }
+            }
+
+      // ì—­ìˆœìœ¼ë¡œ ìˆœìœ„ ì¶œë ¥
+      for(int i=2;i>=0;i--)
+      {
+         pr.prank[i].setText(MarbleGame.p[finalrank[i]].getName());
+      }
+   }
+
+   public void stadiumcheck()
+   {
+      if(MarbleGame.st[posi].getOwnerCheck()==0 && posi!=0)
+      {
+         BuyPopup bp = new BuyPopup(); // êµ¬ì¥ êµ¬ë§¤í•˜ê¸° íŒì—…
+      }
+      else
+         if(posi==3 || posi==9)
+         {
+            SoccerGame sc = new SoccerGame(); // ì¶•êµ¬ ê²Œì„ ì‹¤í–‰
+         }
+         else
+            if(posi == 6)
+            {
+               MarbleGame.p[pnum].setBlack(0); // ë°Ÿìœ¼ë©´ ìƒíƒœ 0ìœ¼ë¡œ ë§Œë“¤ê¸°
+
+               BholePopup bp = new BholePopup(); // ë¸”ë™í™€ ì…ì¥ íŒì—…
+            }
+            else
+               if(MarbleGame.st[posi].getOwner()!=pnum && posi!=0)
+               {
+                  TollPopup tp = new TollPopup(); // êµ¬ì¥ í†µí–‰ë£Œ ë° ì¸ìˆ˜í•˜ê¸° íŒì—…
+               }
+   }
+
+   public void border()
+   {
+      ImageIcon yb = new ImageIcon("img/yellow_border.png");
+      ImageIcon yb2 = new ImageIcon("img/yellow_border2.png");
+      ImageIcon bb = new ImageIcon("img/blue_border.png");
+      ImageIcon bb2 = new ImageIcon("img/blue_border2.png");
+      ImageIcon gb = new ImageIcon("img/green_border.png");
+      ImageIcon gb2 = new ImageIcon("img/green_border2.png");
+
+      if(pnum == 0)
+      {
+         switch(MarbleGame.p[pnum].getPosition()) 
+         {
+         case 1 : case 2 : case 7 : case 8 :
+            PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(yb);
+            break;
+         case 4 : case 5 : case 10 : case 11 :
+            PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(yb2);
+            break;
+         }
+      }
+      else
+         if(pnum == 1)
+         {
+            switch(MarbleGame.p[pnum].getPosition()) 
+            {
+            case 1 : case 2 : case 7 : case 8 :
+               PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(bb);
+               break;
+            case 4 : case 5 : case 10 : case 11 :
+               PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(bb2);
+               break;
+            }
+         }
+         else
+            if(pnum == 2)
+            {
+               switch(MarbleGame.p[pnum].getPosition()) 
+               {
+               case 1 : case 2 : case 7 : case 8 :
+                  PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(gb);
+                  break;
+               case 4 : case 5 : case 10 : case 11 :
+                  PBorder.pborder[MarbleGame.p[pnum].getPosition()].setIcon(gb2);
+                  break;
+               }
+            }
+   }
+
+   public void nonborder(int num)
+   {
+      ImageIcon c = new ImageIcon("img/clear.png");
+
+      PBorder.pborder[num].setIcon(c);
+   }
+
+   public void sumproperty()
+   {
+      int property = 0;
+
+      // ì „ ì¬ì‚° êµ¬í•˜ê¸°
+      for(int i=0;i<3;i++)
+      {
+         property += MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getTakePrice();
+      }
+      property += MarbleGame.p[MarbleManager.pnum].getMoney();
+
+      MarbleGame.p[pnum].setProperty(property);
+   }
 }

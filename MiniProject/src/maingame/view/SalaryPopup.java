@@ -13,79 +13,82 @@ import maingame.controller.MarbleGame;
 import maingame.controller.MarbleManager;
 
 public class SalaryPopup extends JDialog
-{	
-	private ImageIcon pbg = new ImageIcon("img/popupbackground.png");
-	private ImageIcon yb = new ImageIcon("img/yesbutton.png");
-	private JLabel background;
-	private JLabel[] text = new JLabel[3];
-	private JButton yes;
-	private MarbleManager mm = new MarbleManager();
+{   
+   private ImageIcon pbg = new ImageIcon("img/popupbackground.png");
+   private ImageIcon yb = new ImageIcon("img/yesbutton.png");
+   private JLabel background;
+   private JLabel[] text = new JLabel[3];
+   private JButton yes;
+   private MarbleManager mm = new MarbleManager();
 
-	public SalaryPopup()
-	{
-		// ÆË¾÷ Æ² ¼³Á¤
-		setTitle("°ü¶÷·á Áö±Ş"); // ÆË¾÷ ¼³Á¤ 5Á¾
-		setSize(500, 280);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setLayout(null);
+   public SalaryPopup()
+   {
+      // íŒì—… í‹€ ì„¤ì •
+      setTitle("ì²´ë ¥ ì§€ê¸‰"); // íŒì—… ì„¤ì • 5ì¢…
+      setSize(500, 280);
+      setResizable(false);
+      setLocationRelativeTo(null);
+      setLayout(null);
 
-		background = new JLabel(pbg); // ÀÌ¹ÌÁö
-		background.setBounds(0, 0, 500, 280); // À§Ä¡ ¹× »çÀÌÁî
+      background = new JLabel(pbg); // ì´ë¯¸ì§€
+      background.setBounds(0, 0, 500, 280); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		String str1 = null;
-		String str2 = String.format("%,d", MarbleGame.p[MarbleManager.pnum].getSalary());
+      int health=200;
+      String str1 = null;
+      String str2 = String.format("%,d", health);
 
-		for (int i=0;i<3;i++)
-		{
-			text[i] = new JLabel(); // »ı¼º
-			text[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 18)); // ±Û²Ã, ÀÏ¹İ, Å©±â
-			text[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
-		}
+      for (int i=0;i<3;i++)
+      {
+         text[i] = new JLabel(); // ìƒì„±
+         text[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 18)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
+         text[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
+      }
 
-		// ¼ÒÀ¯ÇÑ ±¸Àå ³ª¿­
-		for(int i=0;i<3;i++)
-		{
-			if(i == 0)
-			{
-				if(MarbleGame.pst[MarbleManager.pnum][0] != 0)
-					str1 = MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][0]].getName();
-			}
-			else
-				if(MarbleGame.pst[MarbleManager.pnum][i] != 0)
-					str1 += " / " + MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getName();
-		}
+      // ì†Œìœ í•œ êµ¬ì¥ ë‚˜ì—´
+      for(int i=0;i<3;i++)
+      {
+         if(i == 0)
+         {
+            if(MarbleGame.pst[MarbleManager.pnum][0] != 0)
+               str1 = MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][0]].getName();
+         }
+         else
+            if(MarbleGame.pst[MarbleManager.pnum][i] != 0)
+               str1 += " / " + MarbleGame.st[MarbleGame.pst[MarbleManager.pnum][i]].getName();
+      }
 
-		text[0].setText("< ¼ÒÀ¯ÇÑ ±¸Àå ¸ñ·Ï >");
-		text[0].setBounds(0, 40, 500, 30);
-		text[1].setText(str1);
-		text[1].setBounds(0, 75, 500, 30);
-		text[2].setText("ÃÑ " + str2 + "¿øÀÇ °ü¶÷·á°¡ Áö±ŞµË´Ï´Ù.");
-		text[2].setBounds(0, 110, 500, 30);
+      //text[0].setText("< ì†Œìœ í•œ ê³¼ëª© ëª©ë¡ >");
+      //text[0].setBounds(0, 40, 500, 30);
+      //text[1].setText(str1);
+      text[1].setBounds(0, 75, 500, 30);
+      text[2].setText("í•œ í„´ì´ ëë‚¬ìŠµë‹ˆë‹¤! " + str2 + "ì˜ ì²´ë ¥ ì§€ê¸‰ë©ë‹ˆë‹¤.");
+      //text[2].setText("í•œë°”í€´ ëŒì•˜ìŠµë‹ˆë‹¤! ì²´ë ¥ì´ ì§€ê¸‰ë©ë‹ˆë‹¤!!");
+      text[2].setBounds(0, 110, 500, 30);
 
-		yes = new JButton(yb); // ÀÌ¹ÌÁö
-		yes.setBorderPainted(false); // ¹öÆ° ¼³Á¤ 3Á¾
-		yes.setContentAreaFilled(false);
-		yes.setFocusPainted(false);
-		yes.setBounds(200, 175, 100, 50); // À§Ä¡ ¹× »çÀÌÁî
+      yes = new JButton(yb); // ì´ë¯¸ì§€
+      yes.setBorderPainted(false); // ë²„íŠ¼ ì„¤ì • 3ì¢…
+      yes.setContentAreaFilled(false);
+      yes.setFocusPainted(false);
+      yes.setBounds(200, 175, 100, 50); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 
-		// ¿¹ ¹öÆ° ¾×¼Ç(¹«±â¸í)
-		yes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose(); // »ç¶óÁö°Ô ÇÏ±â
+      // ì˜ˆ ë²„íŠ¼ ì•¡ì…˜(ë¬´ê¸°ëª…)
+      yes.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            dispose(); // ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
 
-				MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.p[MarbleManager.pnum].getSalary()); // ¿ù±Ş Áö±Ş
-				mm.moneysetting(); // µ· ¼¼ÆÃ
-			}
-		});
+            //MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+MarbleGame.p[MarbleManager.pnum].getSalary()); // ì›”ê¸‰ ì§€ê¸‰
+            MarbleGame.p[MarbleManager.pnum].setMoney(MarbleGame.p[MarbleManager.pnum].getMoney()+health); // ì›”ê¸‰ ì§€ê¸‰
+            mm.moneysetting(); // ëˆ ì„¸íŒ…
+         }
+      });
 
-		// ÆË¾÷¿¡ ÄÄÆ÷³ÍÆ®µé ¿Ã¸®±â
-		for (int i=0;i<3;i++) {
-			background.add(text[i]);
-		}
-		background.add(yes);
-		add(background);
+      // íŒì—…ì— ì»´í¬ë„ŒíŠ¸ë“¤ ì˜¬ë¦¬ê¸°
+      for (int i=0;i<3;i++) {
+         background.add(text[i]);
+      }
+      background.add(yes);
+      add(background);
 
-		setVisible(true); // ÆË¾÷À» º¸¿©ÁÖ±â
-	}
+      setVisible(true); // íŒì—…ì„ ë³´ì—¬ì£¼ê¸°
+   }
 }

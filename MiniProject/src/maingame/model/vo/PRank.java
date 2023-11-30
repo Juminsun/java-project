@@ -15,16 +15,16 @@ public class PRank extends JLabel
 	{
 		for(int i=0;i<3;i++)
 		{
-			prank[i] = new JLabel(); // »ý¼º
-			prank[i].setFont(new Font("08¼­¿ï³²»êÃ¼ M", Font.PLAIN, 20)); // ±Û²Ã, ÀÏ¹Ý, Å©±â
-			prank[i].setHorizontalAlignment(JLabel.CENTER); // ¶óº§ ³»¿¡¼­ °¡¿îµ¥Á¤·Ä
+			prank[i] = new JLabel(); // ìƒì„±
+			prank[i].setFont(new Font("08ì„œìš¸ë‚¨ì‚°ì²´ M", Font.PLAIN, 20)); // ê¸€ê¼´, ì¼ë°˜, í¬ê¸°
+			prank[i].setHorizontalAlignment(JLabel.CENTER); // ë¼ë²¨ ë‚´ì—ì„œ ê°€ìš´ë°ì •ë ¬
 		}
-		prank[0].setBounds(700, 590, 160, 70); // À§Ä¡ ¹× »çÀÌÁî
+		prank[0].setBounds(700, 590, 160, 70); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		prank[1].setBounds(700, 520, 160, 70);
 		prank[2].setBounds(700, 450, 160, 70);
 		for(int i=0;i<3;i++)
 		{
-			MarbleGame.jlp.add(prank[i], new Integer(8)); // 8Ãþ¿¡ Ãß°¡
+			MarbleGame.jlp.add(prank[i], new Integer(8)); // 8ì¸µì— ì¶”ê°€
 		}
 	}
 }

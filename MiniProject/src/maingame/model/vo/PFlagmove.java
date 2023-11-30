@@ -6,11 +6,11 @@ import maingame.controller.MarbleGame;
 
 public class PFlagmove extends JLabel
 {
-	public static JLabel pflagmove; // ¸» ÀÌµ¿ ½ÃÀÛ À§Ä¡ ÁÂÇ¥
+	public static JLabel pflagmove; // ë§ ì´ë™ ì‹œì‘ ìœ„ì¹˜ ì¢Œí‘œ
 	
 	public PFlagmove()
 	{
-		pflagmove = new JLabel(); // »ı¼º
-		MarbleGame.jlp.add(pflagmove, new Integer(6)); // 6Ãş¿¡ Ãß°¡
+		pflagmove = new JLabel(); // ìƒì„±
+		MarbleGame.jlp.add(pflagmove, new Integer(6)); // 6ì¸µì— ì¶”ê°€
 	}
 }

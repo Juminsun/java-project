@@ -11,8 +11,8 @@ public class TurnBackground extends JLabel
 
 	public TurnBackground()
 	{
-		setIcon(tbg); // ÀÌ¹ÌÁö
-		setBounds(0, 0, 1500, 1000); // À§Ä¡ ¹× »çÀÌÁî
-		MarbleGame.jlp.add(this, new Integer(2)); // 2Ãş¿¡ Ãß°¡
+		setIcon(tbg); // ì´ë¯¸ì§€
+		setBounds(0, 0, 1500, 1000); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
+		MarbleGame.jlp.add(this, new Integer(2)); // 2ì¸µì— ì¶”ê°€
 	}
 }

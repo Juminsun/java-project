@@ -14,11 +14,11 @@ public class PGround extends JLabel
 		{
 			for(int j=0;j<3;j++)
 			{
-				pground[i][j] = new JLabel(); // »ý¼º
+				pground[i][j] = new JLabel(); // ìƒì„±
 			}
 		}
 		
-		pground[0][0].setBounds(72, 511, 110, 150); // À§Ä¡ ¹× »çÀÌÁî
+		pground[0][0].setBounds(72, 511, 110, 150); // ìœ„ì¹˜ ë° ì‚¬ì´ì¦ˆ
 		pground[0][1].setBounds(192, 511, 110, 150);
 		pground[0][2].setBounds(312, 511, 110, 150);
 		
@@ -34,7 +34,7 @@ public class PGround extends JLabel
 		{
 			for(int j=0;j<3;j++)
 			{
-				MarbleGame.jlp.add(pground[i][j], new Integer(5)); // 5Ãþ¿¡ Ãß°¡
+				MarbleGame.jlp.add(pground[i][j], new Integer(5)); // 5ì¸µì— ì¶”ê°€
 			}
 		}
 	}
